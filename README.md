@@ -1,9 +1,8 @@
-# MATLAB HS13 – Research Plan (Template)
-(text between brackets to be removed)
+# MATLAB HS13 – Research Plan
 
-> * Group Name: (be creative!)
-> * Group participants names: (alphabetically sorted by last name)
-> * Project Title: (can be changed)
+> * Group Name: Team Bambi
+> * Group participants names: Amedeo Agosti, Marco Binelli, Prashanth Kanduri, Seonwook Park
+> * Project Title: Run Bambi, run!
 
 ## General Introduction
 
@@ -27,11 +26,14 @@
 (What are the answers to the above questions that you expect to find before starting your research?)
 
 
-## References 
+## References
 
 (Add the bibliographic references you intend to use)
 (Explain possible extension to the above models)
 (Code / Projects Reports of the previous year)
+
+Camazin - Trail formation in ants (2001)
+D Helbing et al. - Modelling the evolution of human trail systems (Vol. 388 1997)
 
 
 ## Research Methods
