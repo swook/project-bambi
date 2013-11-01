@@ -19,6 +19,10 @@ efficient rescue efforts in the case of fire.
 Studies for human trail formation and forest fire spread are well established.
 Our study aims to combine the two studies using relatable case studies.
 
+We will focus on generating simple landscapes to apply our model to, in order to
+keep discussion as general as possible. Possibly as an extension, we will apply
+our model to existing landscapes.
+
 ## The Model
 ### Trail formation
 #### Independent Variables
@@ -43,7 +47,7 @@ Our study aims to combine the two studies using relatable case studies.
 ### Path Finding within fire
 #### Independent Variables
 - Agent velocity.
-- Path finding capability.
+- [Extension] Path finding capability.
 
 #### Dependent Variables
 - Path taken in fire.
@@ -68,8 +72,3 @@ Our study aims to combine the two studies using relatable case studies.
 
 ### Forest Fire Spread
 - Agent-Based Model
-
-## Other
-### Data to be used
-- Google Maps - Formed forest trails.
-- Open Data Schweiz [(website)](http://opendata.admin.ch/it/dataset?groups=raum-und-umwelt)
