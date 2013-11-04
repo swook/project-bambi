@@ -1,23 +1,34 @@
-function tmp
+% Main function
+function basic
+	% Clear all variables before starting
 	clear all;
 	clc;
 
-	h = 500;
-	w = 800;
-	p = 0.005;
+	% Input Variables used in simulation
+	h = 500;	% Height of grid
+	w = 800;	% Width of grid
+	p = 0.005;	% Probability of a tree growing in an empty slot
 
+	% Generate initial forest
 	[trees, onfire] = generateInitial(h, w);
 
+	% Loop forever
 	while 1
+		% Process a step
+		% - Pass in trees and onfire matrices (grids) as argument, and get
+		%   updated ones back.
 		[trees, onfire] = step(trees, onfire, h, w, p);
 	end
 end
 
+% Creates a grid of trees to start from and sets a few on fire.
 function [trees, onfire] = generateInitial(h, w)
+	% Load in files
 	trees = rgb2gray(imread('trees.png')) > 1;
 	onfire = rgb2gray(imread('onfire.png')) > 1;
 end
 
+% Processes the forest fire by one step
 function [ntrees, nonfire] = step(trees, onfire, h, w, p)
 	ntrees = trees;
 	nonfire = zeros(size(onfire));
