@@ -14,7 +14,9 @@ dt=1;   %time step
 
 % Create environmental grid (matrix) and agent (bambis) information
 
-Grid = zeros(h,w);  % Environmental grid
+GridG = zeros(h,w);  % Environmental grid
 
-A_pos = zeros(nagent,2);  % Agents (bambis) positions matrix (x,y)
+dests = {[1 1], [100 100], [100 1], [1 100]};
+[A_pos, A_dest] = PlaceAgents(h, w, nagent, dests)  % Agents (bambis) positions matrix (x,y)
 A_dir = zeros(nagent,2);  % Agents (bambis) direction (x,y)
+
