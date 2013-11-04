@@ -1,5 +1,8 @@
 	G(r): Comfort of walking (in our case, rectangle of constant values)
 	V(r): Trail potential
+		> inv. proportional to treeness
+		>      proportional to pathness
+		> inv. proportional to probability of burning
 	R(r): Position of Agents
 	F(r): Amount of burning
 
@@ -14,9 +17,6 @@
 # Forest Fire (Second step)
 ## Input
 -	V(r)
-	> inv. proportional to treeness
-	>      proportional to pathness
-	> inv. proportional to probability of burning
 
 ## Output
 -	V(r)
