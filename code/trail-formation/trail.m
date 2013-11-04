@@ -10,6 +10,8 @@ h = 100;  % Grid height
 w = 100;  % Grid width
 nagent = 7;  % Number of bambis
 
+dt=1;   %time step
+
 % Create environmental grid (matrix) and agent (bambis) information
 
 Grid = zeros(h,w);  % Environmental grid

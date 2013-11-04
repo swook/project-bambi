@@ -1,13 +1,13 @@
-function [ nextG ] = nG( r,G,A_pos,Gzero,Gmax,I,T )
+function [ nextG ] = nG( r,G,A_pos,Gzero,Gmax,I,T,dt )
 %dG time evolution of Ground 
 
-
-nextG=Vregen( G,Gzero,T );
-
+dG=Vregen( G,Gzero,T );
 
     for i=1:size(A_pos,1)
         if r==A_pos
-           nextG=nextG+Itrample(G,Gmax,I);
+           dG=dG+Itrample(G,Gmax,I);
         end
     end
+    
+    nextG=G+dt*dG;
 end
