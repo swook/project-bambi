@@ -1,16 +1,17 @@
 % Set initial parameters
 
 Gzero = 1;    % Initial G (comfort of walking) value
-Gmax  = 10;   % Maximum comfort of walking
-I     = 5;    % Intensity parameter of trampling
-T     = 1;    % Durability of trails
-sigma = 10;  %  Visibility function
+Gmax  = 30;   % Maximum comfort of walking
+I     = 10;   % Intensity parameter of trampling
+T     = 300;  % Durability of trails
+sigma = 1000; % Visibility function
+v     = 1.0;  % Speed of agents
 
 h      = 100;  % Grid height
 w      = 100;  % Grid width
 nagent = 100;  % Number of bambis
 
-dt = 0.1; % Time step
+dt = 1; % Time step
 
 % Create environmental grid (matrix) and agent (bambis) information
 G     = Gzero * ones(h,w);  % Environmental grid
@@ -26,15 +27,24 @@ for i = 1:1000
 	disp(i)
 
 	% Calculate next values of G
-	G = nG(G, A_pos, Gzero, Gmax, I, T, dt);
-	V = calcV(G, A_pos, sigma);
+	G      = nG(G, A_pos, Gzero, Gmax, I, T, dt);
+	V      = calcV(G, A_pos, sigma);
+	e      = calcDirection(V, A_pos, A_dest);
+	A_pos  = nextPos(A_pos, e, v, dt, nagent);
+	A_dest = newDest(A_pos, A_dest, dests);
+
+	% A = zeros(size(G));
+	% for p = 1:nagent
+	% 	A(A_pos(p, 2), A_pos(p, 1)) = Gmax;
+	% end
 
 	% Simple visualisation
-	surf(V(:,:,1));             % 3D contour plot of values
+	surf(G);             % 3D contour plot of values
 	view(2);             % Set to bird's eye view
+	axis square;         % Set 1:1 grid cell size ratio
 	colormap(summer);    % Sets colour scale to go from green to yellow
 	colorbar;            % Shows the colour bar
-	% caxis([Gzero Gmax]); % Sets axis limits of colour bar
+	caxis([Gzero Gmax]); % Sets axis limits of colour bar
 
-	pause(.1);
+	pause(.01);
 end
