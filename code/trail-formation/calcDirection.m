@@ -4,7 +4,7 @@ w = size(V, 2);
 n = size(V, 3);
 e = zeros(n, 2);
 
-for p = 1:n
+parfor p = 1:n
 	[dX, dY] = gradient(V(:, :, p));
 	dV = dX + dY;
 
