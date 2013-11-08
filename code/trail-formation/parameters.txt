@@ -1,0 +1,25 @@
+# Trails related
+G (Matrix of double): Comfort of walking
+
+# Parameter to system
+T     (double): Durability of trails
+I     (double): Intensity trampling per step
+Gmax  (double): Maximum G
+Gzero (double): Initial G
+
+# Local variables (only inside functions)
+r_a (1x2 double): Agent position
+
+# General progression of system
+dt (double)    : Time step per iteration
+t  (double)    : Time
+r  (1x2 double): Position (x, y)
+e  (1x2 double): Direction of agent (x, y)
+
+x  (double)    : Grid position (column no.) [1..100 etc]
+y  (double)    : Grid position (row no.) [1..100 etc]
+
+# Data
+A_pos  (Nx2): Position of agents (x, y)
+A_dest (Nx2): Destination of agents
+GridG  (NxN): Grid of G values
