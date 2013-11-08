@@ -1,5 +1,7 @@
 # Trails related
-G (Matrix of double): Comfort of walking
+G     (HxW double):   Comfort of walking
+sigma (HxW double):   Vision of agent (Constant for flat plane without obstacles)
+V     (HxWxN double): Attractiveness of position
 
 # Parameter to system
 T     (double): Durability of trails
@@ -20,6 +22,5 @@ x  (double)    : Grid position (column no.) [1..100 etc]
 y  (double)    : Grid position (row no.) [1..100 etc]
 
 # Data
-A_pos  (Nx2): Position of agents (x, y)
-A_dest (Nx2): Destination of agents
-GridG  (NxN): Grid of G values
+A_pos  (Nx2 double): Position of agents (x, y)
+A_dest (Nx2 double): Destination of agents
