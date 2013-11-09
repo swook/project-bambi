@@ -23,10 +23,9 @@ dests = {[1 1], [100 100], [100 1], [1 100]};
 A_dir = zeros(nagent,2);  % Agents (bambis) direction (x,y)
 
 %% Run simulation
-for i = 1:1000
-	disp(i)
-
+for i = 1:inf
 	% Calculate next values of G
+	tic;
 	G      = nG(G, A_pos, Gzero, Gmax, I, T, dt);
 	V      = calcV(G, A_pos, sigma);
 	e      = calcDirection(V, A_pos, A_dest);
@@ -50,5 +49,7 @@ for i = 1:1000
 	colorbar;            % Shows the colour bar
 	caxis([Gzero Gmax]); % Sets axis limits of colour bar
 
-	pause(.01);
+	t = toc;
+	disp(['Done with step ' num2str(i) ' after ' num2str(t * 1000, 3) ' ms.']);
+	pause(1e-1);
 end
