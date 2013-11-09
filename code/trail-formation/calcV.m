@@ -7,7 +7,7 @@ function V = calcV(G, A_pos, sigma)
 	V = zeros(h, w, N);
 
 	% Per agent, calculate potential per position
-	parfor p = 1:size(A_pos, 1)
+	for p = 1:size(A_pos, 1)
 		r_a = A_pos(p, :);
 
 		%% More direct method, but slow

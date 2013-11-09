@@ -22,11 +22,6 @@ dests = {[1 1], [100 100], [100 1], [1 100]};
 [A_pos, A_dest] = PlaceAgents(h, w, nagent, dests);  % Agents (bambis) positions matrix (x,y)
 A_dir = zeros(nagent,2);  % Agents (bambis) direction (x,y)
 
-%% Open Matlab pools for parallelisation
-if matlabpool('size') == 0
-	matlabpool('open');
-end
-
 %% Run simulation
 for i = 1:1000
 	disp(i)

@@ -4,7 +4,7 @@ function e = calcDirection (V, A_pos, A_dest)
 	n = size(V, 3);
 	e = zeros(n, 2);
 
-	parfor p = 1:n
+	for p = 1:n
 		[dX, dY] = gradient(V(:, :, p));
 		dV = dX + dY;
 
