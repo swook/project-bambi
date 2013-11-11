@@ -17,4 +17,5 @@ function [ nextG ] = nG(G, A_pos, Gzero, Gmax, I, T, dt)
 	end
 
 	nextG = G + dt*dG;
+	nextG(nextG > Gmax) = Gmax;
 end
