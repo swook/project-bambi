@@ -6,11 +6,10 @@ function e = calcDirection (V, A_pos, A_dest)
 
 	for p = 1:n
 		[dX, dY] = gradient(V(:, :, p));
-		dV = dX + dY;
 
 		x = A_pos(p, 1);
 		y = A_pos(p, 2);
-		numer = A_dest(p, :) - [x y] + dV(y, x);
+		numer = A_dest(p, :) - [x y] + [dX(y, x) dY(y, x)];
 
 		norm_numer = norm(numer);
 		if norm_numer == 0.0
