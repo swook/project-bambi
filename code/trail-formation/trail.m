@@ -17,7 +17,7 @@ function [G, A_pos] = trail(Gzero, Gmax, I, T, sigma, v, h, w, nagent, N)
 		G      = nG(G, A_pos, Gzero, Gmax, I, T, dt);
 		V      = calcV(G, A_pos, sigma);
 		e      = calcDirection(V, A_pos, A_dest);
-		A_pos  = nextPos(A_pos, e, v, dt, max([h w]));
+		A_pos  = nextPos(A_pos, e, v, dt, h, w);
 		A_dest = newDest(A_pos, A_dest, dests);
 
 		A = zeros(size(G));
