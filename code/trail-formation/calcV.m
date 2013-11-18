@@ -1,30 +1,52 @@
 function V = calcV(G, A_pos, sigma)
-	h = size(G, 1);
-	w = size(G, 2);
-	N = size(A_pos, 1);
+% CALCV Calculates the V-matrix for each agent using the G-matrix in this time
+%       step
 
-	% 3D matrix where 3rd dimension is per agent
-	V = zeros(h, w, N);
+	h      = size(G, 1);     % Height of grid
+	w      = size(G, 2);     % Width of grid
+	n      = h * w;          % Number of grid cells
+	nagent = size(A_pos, 1); % Number of agents
 
-	% Per agent, calculate potential per position
-	for p = 1:size(A_pos, 1)
-		r_a = A_pos(p, :);
+	% A matrix of V, trail potential
+	V = zeros(h, w);
 
-		%% More direct method, but slow
-		% for j = 1:size(G, 1)
-		% 	for i = 1:size(G, 2)
-		% 		V(j, i, p) = V(j, i, p) + exp(-norm([i j] - r_a) / sigma(j,  i)) * G(j, i);
-		% 	end
-		% end
+	neigh = [0 0; 0 1; 1 0; 0 -1; -1 0]; %; -1 -1; -1 1; 1 -1; 1 1];
+	neighN = size(neigh, 1);
 
-		r_a = repmat(r_a, h*w, 1);
+	% Per agent, calculate potential per position of itself and neighbours
+	for p = 1:nagent
+		for i = 1:neighN
+			x = A_pos(p, 1) + neigh(i, 1);
+			y = A_pos(p, 2) + neigh(i, 2);
+			if x < 1 || y < 1 || x > w || y > h
+				% Invalid coordinates, skip
+				continue;
+			end
 
-		% Create list of indices with x in col 1, y in col 2
-		tmp = {};
-		[tmp{1:2}] = ind2sub(size(G), 1:numel(G));
-		ind = cat(1, tmp{2}, tmp{1}).';
+			if V(y, x) > 0
+				% V has already been calculated here
+				continue;
+			end
 
-		dr = ind - r_a;
-		V(:, :, p) = V(:, :, p) + reshape(-sqrt(sum(dr .^ 2, 2)), h, w) ./ sigma .* G;
+			% Repeat position h*w (number of grid cells) times for
+			% quicker Matlab operations
+			r = repmat([x y], h*w, 1);
+
+			% Create list of indices with x in col 1, y in col 2
+			tmp = {};
+			[tmp{1:2}] = ind2sub(size(G), 1:numel(G));
+			ind = cat(1, tmp{2}, tmp{1}).';
+
+			% Calculate distance between agent and all grid positions
+			dr   = ind - r;
+			dist = sqrt(sum(dr .^ 2, 2));
+			dist = reshape(dist, h, w);
+
+			% Calculate contribution of agent
+			Vcontrib = exp(-dist ./ sigma(y, x)) .* G;
+
+			% Increment V at agent's position by contribution
+			V(y, x) = sum(Vcontrib(:));
+		end
 	end
 end
