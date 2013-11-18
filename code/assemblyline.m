@@ -5,12 +5,13 @@ function [G, A_pos] = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, nagent, N)
 	cd ..
 
 	% Let's stop here for now
-	return;
+% 	return;
 
 	% Loop for forest fire and path finding
 	for i = 1:inf
 		% Perform forest fire
 		cd 'forest-fire'
+%         spreadfire(G);
 		cd ..
 
 		% Perform path finding

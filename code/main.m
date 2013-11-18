@@ -1,4 +1,4 @@
-clear all;
+%clear all;
 clc;
 
 % Trail formation parameters
@@ -11,12 +11,16 @@ v     = 1.0;  % Speed of agents
 
 h      = 100; % Grid height
 w      = 100; % Grid width
-nagent = 100; % Number of bambis
+nagent = 50;  % Number of bambis
 
-N = 400; % Number of iterations
+N = 100; % Number of iterations
 
 % Forest fire parameters
 
+% Fire Initialization
+Fi = zeros(h,w);
+origin = [50 50];   % Coordinates of the starting point of the fire
+Fi(origin) = 1;     % Setting that point on fire
 
 % Path finding parameters
 
