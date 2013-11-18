@@ -1,0 +1,24 @@
+# Trails related
+G     (hxw double): Comfort of walking
+F     (hxw double): Strength of fire [0, 1]
+sigma (hxw double): Vision of agent (Constant for flat plane without obstacles)
+
+# Parameter to system
+Gmax  (double): Maximum G
+Gzero (double): Initial G
+
+# Local variables (only inside functions)
+r_a (1x2 double): Agent position
+
+# General progression of system
+dt (double)    : Time step per iteration
+t  (double)    : Time
+r  (1x2 double): Position (x, y)
+e  (1x2 double): Direction of agent (x, y)
+
+x  (double)    : Grid position (column no.) [1..100 etc]
+y  (double)    : Grid position (row no.) [1..100 etc]
+
+# Data
+A_pos  (Nx2 double): Position of agents (x, y)
+A_dest (Nx2 double): Destination of agents

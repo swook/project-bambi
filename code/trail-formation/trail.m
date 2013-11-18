@@ -1,14 +1,14 @@
-function [G, A_pos] = trail(Gzero, Gmax, I, T, sigma, v, h, w, nagent, N)
+function [G, A_pos] = trail(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N)
+% TRAIL Carries out trail formation
+
 	% Set initial parameters
 	dt = 1; % Time step
 
 	% Create environmental grid (matrix) and agent (bambis) information
 	G     = Gzero * ones(h,w);  % Environmental grid
-	sigma = sigma * ones(h,w);    % Grid of visibility values
+	sigma = sigma * ones(h,w);  % Grid of visibility values
 
 	%% Initial agents placement
-	% dests = {[1 1], [100 100], [100 1], [1 100]};
-	dests = {[50 10], [100 90], [1 90]};
 	[A_pos, A_dest] = PlaceAgents(h, w, nagent, dests);  % Agents (bambis) positions matrix (x,y)
 	A_dir = zeros(nagent,2);  % Agents (bambis) direction (x,y)
 
@@ -19,7 +19,7 @@ function [G, A_pos] = trail(Gzero, Gmax, I, T, sigma, v, h, w, nagent, N)
 		G      = nG(G, A_pos, Gzero, Gmax, I, T, dt);
 		V      = calcV(G, A_pos, sigma);
 		e      = calcDirection(V, A_pos, A_dest);
-		A_pos  = nextPos(A_pos, e, v, dt, max([h w]));
+		A_pos  = nextPos(A_pos, e, v, dt, h, w);
 		A_dest = newDest(A_pos, A_dest, dests);
 
 		A = zeros(size(G));

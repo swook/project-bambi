@@ -1,0 +1,22 @@
+# Area related
+G (hxw double): Comfort of walking
+F (hxw double): Strength of fire [0, 1]
+
+# Parameter to system
+Gmax   (double): Maximum G
+Gzero  (double): Initial G
+Gburnt (double): G of area when fire has gone away
+                 (Set G to Gburnt when fire burns out, ie. F = 0)
+dF     (double): Fire step
+                 (Initial F when fire spreads into cell is 1,
+                  decreases by dF per time step)
+
+# Local variables (only inside functions)
+r_a (1x2 double): Agent position
+
+# General progression of system
+dt (double)    : Time step per iteration
+t  (double)    : Time
+
+x  (double)    : Grid position (column no.) [1..100 etc]
+y  (double)    : Grid position (row no.) [1..100 etc]
