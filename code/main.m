@@ -29,4 +29,4 @@ Fi(origin) = 1;     % Setting that point on fire
 
 
 % Perform set of instructions
-[G, A_pos] = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, nagent, N);
+[G, A_pos] = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N);
