@@ -20,6 +20,7 @@ function [G, A_pos] = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nag
 
 		% Perform path finding
 		cd 'path-finding'
+		[G, A_pos] = pathfind(G, F, sigma, v, A_pos, dests);
 		cd ..
 
 		% Remove the dead Bambis. We don't need them.
