@@ -12,6 +12,8 @@ v     = 1.0;  % Speed of agents
 h      = 100; % Grid height
 w      = 100; % Grid width
 nagent = 100; % Number of bambis
+% Possible destinations of agents
+dests = {[1 1], [50 50], [50 1], [1 50]};
 
 N = 400; % Number of iterations
 
@@ -22,4 +24,4 @@ N = 400; % Number of iterations
 
 
 % Perform set of instructions
-[G, A_pos] = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, nagent, N);
+[G, A_pos] = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N);

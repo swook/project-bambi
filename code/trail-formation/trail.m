@@ -7,8 +7,6 @@ function [G, A_pos] = trail(Gzero, Gmax, I, T, sigma, v, h, w, nagent, N)
 	sigma = sigma * ones(h,w);    % Grid of visibility values
 
 	%% Initial agents placement
-	% dests = {[1 1], [100 100], [100 1], [1 100]};
-	dests = {[50 10], [100 90], [1 90]};
 	[A_pos, A_dest] = PlaceAgents(h, w, nagent, dests);  % Agents (bambis) positions matrix (x,y)
 	A_dir = zeros(nagent,2);  % Agents (bambis) direction (x,y)
 
