@@ -10,7 +10,7 @@ function V = calcV(G, A_pos, sigma)
 	% A matrix of V, trail potential
 	V = zeros(h, w);
 
-	neigh = [0 0; 0 1; 1 0; 0 -1; -1 0]; %; -1 -1; -1 1; 1 -1; 1 1];
+	neigh = [0 1; 1 0; 0 -1; -1 0]; %; -1 -1; -1 1; 1 -1; 1 1];
 	neighN = size(neigh, 1);
 
 	% Per agent, calculate potential per position of itself and neighbours

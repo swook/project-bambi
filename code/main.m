@@ -3,17 +3,20 @@ clc;
 
 % Trail formation parameters
 Gzero = 10;   % Initial G (comfort of walking) value
-Gmax  = 60;   % Maximum comfort of walking
-I     = 20;   % Intensity parameter of trampling
-T     = 300;  % Durability of trails
-sigma = 3;    % Visibility function
+Gmax  = 100;  % Maximum comfort of walking
+I     = 10;   % Intensity parameter of trampling
+T     = 200;  % Durability of trails
+sigma = 2.0;  % Visibility function
 v     = 1.0;  % Speed of agents
 
-h      = 100; % Grid height
-w      = 100; % Grid width
+% Possible destinations of agents
+dests = {[1 1], [50 50], [50 1], [1 50]};
+
+h      = 50; % Grid height
+w      = 50; % Grid width
 nagent = 50;  % Number of bambis
 
-N = 100; % Number of iterations
+N = 10000; % Number of iterations
 
 % Forest fire parameters
 
