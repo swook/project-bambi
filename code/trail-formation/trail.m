@@ -1,10 +1,12 @@
-function [G, A_pos] = trail(Gzero, Gmax, I, T, sigma, v, h, w, nagent, N)
+function [G, A_pos] = trail(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N)
+% TRAIL Carries out trail formation
+
 	% Set initial parameters
 	dt = 1; % Time step
 
 	% Create environmental grid (matrix) and agent (bambis) information
 	G     = Gzero * ones(h,w);  % Environmental grid
-	sigma = sigma * ones(h,w);    % Grid of visibility values
+	sigma = sigma * ones(h,w);  % Grid of visibility values
 
 	%% Initial agents placement
 	[A_pos, A_dest] = PlaceAgents(h, w, nagent, dests);  % Agents (bambis) positions matrix (x,y)
