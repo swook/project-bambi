@@ -21,5 +21,11 @@ function [G, A_pos] = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nag
 		% Perform path finding
 		cd 'path-finding'
 		cd ..
+
+		% Remove the dead Bambis. We don't need them.
+		[F, A_pos]= removeDeadBambis();
+
+		% Check if we should stop. (Are all Bambis dead or at their destinations?)
+		termCond = termCheck();
 	end
 end
