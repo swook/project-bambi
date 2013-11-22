@@ -56,7 +56,7 @@ function draw(Gmax, G, A, F)
 	end
 
 	% Paint grass
-	alph = G ./ Gmax;
+	alph = (Gmax - G) ./ Gmax;
 	alph = cat(3, alph, alph, alph);
 	alph = imresize(alph, ph, 'Method', 'nearest');
 	Vis_Frame = uint8((1 - alph) .* double(Vis_BG) + alph .* double(Vis_IGrass_Total));
@@ -65,8 +65,8 @@ function draw(Gmax, G, A, F)
 	if numel(A) > 1
 		nagent = size(A, 1);
 		for i = 1:nagent
-			y0 = (A(i, 1) - 1) * ph + 1;
-			x0 = (A(i, 2) - 1) * pw + 1;
+			y0 = (A(i, 2) - 1) * ph + 1;
+			x0 = (A(i, 1) - 1) * pw + 1;
 			y1 = y0 + ph - 1;
 			x1 = x0 + pw - 1;
 
