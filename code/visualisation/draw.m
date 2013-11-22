@@ -5,6 +5,8 @@ function draw(Gmax, G, A, F)
 	global Vis_IGrass;
 	global Vis_IGrass_Total;
 	global Vis_IFire;
+	global Vis_IFire_BGIdxs;
+	global Vis_IFire_Total;
 	global Vis_Frame;
 	global Vis_BG;
 
@@ -29,10 +31,18 @@ function draw(Gmax, G, A, F)
 	end
 	if numel(Vis_IGrass) ~= pn
 		Vis_IGrass = reshape(imread('grass.jpg'), pn, 3);
-		Vis_IGrass_Total = reshape(repmat(Vis_IGrass, n, 1), Ih, Iw, 3);
+		Vis_IGrass_Total  = reshape(repmat(Vis_IGrass, w, 1), ph, Iw, 3);
+		Vis_IGrass_Total  = repmat(Vis_IGrass_Total, h, 1);
 	end
 	if numel(Vis_IFire) ~= pn
-		Vis_IFire = imread('fire.jpg');
+		Vis_IFire        = reshape(imread('fire.jpg'), pn, 3);
+		Vis_IFire_Total  = reshape(repmat(Vis_IFire, w, 1), ph, Iw, 3);
+		Vis_IFire_Total  = repmat(Vis_IFire_Total, h, 1);
+		Vis_IFire        = reshape(Vis_IFire, ph, pw, 3);
+		Vis_IFire_Flat   = sum(Vis_IFire, 3);
+		Vis_IFire_BGIdxs = Vis_IFire_Flat < 50;
+		Vis_IFire_BGIdxs = repmat(Vis_IFire_BGIdxs, h, w);
+		Vis_IFire_BGIdxs = cat(3, Vis_IFire_BGIdxs, Vis_IFire_BGIdxs, Vis_IFire_BGIdxs);
 	end
 
 	% Initialise frame if not done already
@@ -66,5 +76,16 @@ function draw(Gmax, G, A, F)
 
 			Vis_Frame(y0:y1, x0:x1, :) = bambi(:, :, :);
 		end
+	end
+
+
+	% Paint fire
+	if numel(F) > 1
+		onfire = imresize(uint8(F > 0), ph, 'Method', 'nearest');
+		onfire = cat(3, onfire, onfire, onfire);
+
+		fire = Vis_IFire_Total .* onfire;
+		% imshow(fire)
+		Vis_Frame = Vis_Frame + fire;
 	end
 end
