@@ -74,7 +74,7 @@ function draw(Gmax, G, A, F)
 			grid  = Vis_Frame(y0:y1, x0:x1, :);
 			bambi(Vis_IBambi_BGIdxs) = grid(Vis_IBambi_BGIdxs);
 
-			Vis_Frame(y0:y1, x0:x1, :) = bambi(:, :, :);
+			Vis_Frame(y0:y1, x0:x1, :) = bambi;
 		end
 	end
 
@@ -85,7 +85,6 @@ function draw(Gmax, G, A, F)
 		onfire = cat(3, onfire, onfire, onfire);
 
 		fire = Vis_IFire_Total .* onfire;
-		% imshow(fire)
 		Vis_Frame = Vis_Frame + fire;
 	end
 end
