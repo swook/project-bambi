@@ -1,7 +1,7 @@
-function newDest = newDest_Path(A_pos, A_dest, dests)
+function newD = newDest_Path(A_pos, A_dest, dests)
 % NEWDEST Selects new destination for an agent by proximity
 
-	newDest = zeros(size(A_pos));
+	newD = zeros(size(A_pos));
 
 	nagent = size(A_pos, 1);
 	ndests = numel(dests);
@@ -10,8 +10,8 @@ function newDest = newDest_Path(A_pos, A_dest, dests)
 	for i = 1:nagent
 
 		% Calculate distance between agent and its current destination
-		dist_cur      = norm(A_pos(i, :) - A_dest(i, :));
-		newDest(i, :) = A_dest(i, :);
+		dist_cur   = norm(A_pos(i, :) - A_dest(i, :))
+		newD(i, :) = A_dest(i, :);
 
 		% Loop through available destinations
 		for d = 1:ndests
@@ -23,7 +23,7 @@ function newDest = newDest_Path(A_pos, A_dest, dests)
 			if dist_new < dist_cur
 
 				% Set agent destination as selected destination
-				newDest(i, :) = dests{d};
+				newD(i, :) = dests{d};
 
 				% Stop looking for new destinations
 				break;
