@@ -42,7 +42,7 @@ function [Fnew Gnew timer] = Fire(Fold, Gold, timer, Gmax)
                         ni = neighbours{n}(2) + i;
 
                         % Correct new coordinates in case out of grid
-                        if nj <= 0 || ni <= 0 || nj > h || ni > w
+                        if nj <= 0 || ni <= 0 || nj > w || ni > h
                             continue;
                         end    
                         
