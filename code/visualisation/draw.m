@@ -3,6 +3,7 @@ function draw(Gmax, G, A, e, F)
 	global Vis_IBambi;
 	global Vis_IBambiL;
 	global Vis_IBambi_BGIdxs;
+	global Vis_IBambi_BGIdxsL;
 	global Vis_IGrass;
 	global Vis_IGrass_Total;
 	global Vis_IFire;
@@ -30,6 +31,11 @@ function draw(Gmax, G, A, e, F)
 		Vis_IBambi_Flat = sum(Vis_IBambi, 3);
 		Vis_IBambi_Flat = cat(3, Vis_IBambi_Flat, Vis_IBambi_Flat, Vis_IBambi_Flat);
 		Vis_IBambi_BGIdxs = Vis_IBambi_Flat < 45;
+
+		Vis_IBambiL = flipdim(Vis_IBambi, 2);
+		Vis_IBambi_Flat = sum(Vis_IBambiL, 3);
+		Vis_IBambi_Flat = cat(3, Vis_IBambi_Flat, Vis_IBambi_Flat, Vis_IBambi_Flat);
+		Vis_IBambi_BGIdxsL = Vis_IBambi_Flat < 45;
 	end
 	if numel(Vis_IGrass) ~= pn
 		Vis_IGrass = reshape(imread('grass.jpg'), pn, 3);
@@ -72,13 +78,14 @@ function draw(Gmax, G, A, e, F)
 			y1 = y0 + ph - 1;
 			x1 = x0 + pw - 1;
 
+			grid  = Vis_Frame(y0:y1, x0:x1, :);
 			if e(i, 1) < 0
 				bambi = Vis_IBambiL;
+				bambi(Vis_IBambi_BGIdxsL) = grid(Vis_IBambi_BGIdxsL);
 			else
 				bambi = Vis_IBambi;
+				bambi(Vis_IBambi_BGIdxs) = grid(Vis_IBambi_BGIdxs);
 			end
-			grid  = Vis_Frame(y0:y1, x0:x1, :);
-			bambi(Vis_IBambi_BGIdxs) = grid(Vis_IBambi_BGIdxs);
 
 			Vis_Frame(y0:y1, x0:x1, :) = bambi;
 		end
