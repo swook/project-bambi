@@ -4,6 +4,11 @@ function assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N, F, ti
 %              2. The spreading of a forest fire on the mentioned grid.
 %              3. The path finding of an agent in the grid in the case of fire.
 
+	% Initialise video file
+	cd 'visualisation'
+	initVideo;
+	cd ..
+
 	% Perform trail formation
 	cd 'trail-formation'
 	[G, A_pos, A_dest] = trail(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N);
@@ -54,6 +59,11 @@ function assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N, F, ti
 			break
 		end
 	end
+
+	% Close video file
+	cd 'visualisation'
+	closeVideo;
+	cd ..
 
 	disp(sprintf('\n> %d Bambis died while running away from the fire... RIP.\n', NDead));
 	disp(sprintf('\n> %d Bambis escaped successfully. Hooray!\n', NEscaped));

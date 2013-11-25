@@ -24,6 +24,11 @@ function I = visualise(Gmax, G, varargin)
 
 	draw(Gmax, G, A, e, F);
 
+	% Show frame
 	global Vis_Frame;
 	imshow(Vis_Frame);
+
+	% Store frame into video file
+	global Vis_VObj;
+	writeVideo(Vis_VObj, Vis_Frame);
 end
