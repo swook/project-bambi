@@ -65,6 +65,7 @@ function draw(Gmax, G, A, e, F)
 	end
 
 	% Paint grass
+	G    = double(G > 0) .* G;
 	alph = (Gmax - G) ./ Gmax;
 	alph = cat(3, alph, alph, alph);
 	alph = imresize(alph, ph, 'Method', 'nearest');
