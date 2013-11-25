@@ -15,6 +15,10 @@ function e = calcDirection_Path (V, FV, A_pos, A_dest)
 		x = A_pos(p, 1);
 		y = A_pos(p, 2);
 
+		if FV(y, x) < 0.5
+			continue;
+		end
+
 		if x + 1 > w
 			% Upper X coordinate beyond width of grid
 			dX = V(y, x) - V(y, x - 1);
@@ -54,8 +58,9 @@ function e = calcDirection_Path (V, FV, A_pos, A_dest)
 		end
 
 		fg = [fX fY]; % Gradient vector for fire potential
+		% disp(sprintf('dR: %.4g, g: %.4g, fg: %.4g\n', norm(dR(p, :)), g_norm, norm(fg)));
 
-		numer = dR(p, :) + g - fg; % Add contribution from dest and grad-V
+		numer = dR(p, :) + g - 100 * fg; % Add contribution from dest and grad-V
 		norm_numer = norm(numer);
 
 		if norm_numer == 0.0 % If numerator 0, don't divide by 0, set to 0
