@@ -1,6 +1,7 @@
-function newA_pos = removeDeadBambis(F, A_pos, A_dest, h, w)
+function [newA_pos, newA_dest] = removeDeadBambis(F, A_pos, A_dest, h, w)
 % REMOVEDEADBAMBIS Removes all dead or escaped agents from grid
 	newA_pos   = [];
+	newA_dest  = [];
 	neighbours = {[0 0], [1 0], [0 1], [-1 0], [0 -1]};
 
 	nagent = size(A_pos, 1);
@@ -27,7 +28,8 @@ function newA_pos = removeDeadBambis(F, A_pos, A_dest, h, w)
 
 		% If there are neighbours not on fire, place into new list of A
 		if Nonfire < nneigh
-			newA_pos = [newA_pos; A_pos(i, :)];
+			newA_pos  = [newA_pos; A_pos(i, :)];
+			newA_dest = [newA_dest; A_dest(i, :)];
 		end
 	end
 end

@@ -1,4 +1,4 @@
-function [G, A_pos] = trail(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N)
+function [G, A_pos, A_dest] = trail(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N)
 % TRAIL Carries out trail formation
 
 	% Set initial parameters
