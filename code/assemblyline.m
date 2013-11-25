@@ -9,6 +9,16 @@ function [G, A_pos] = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nag
 	[G, A_pos, A_dest] = trail(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N);
 	cd ..
 
+    % Fire Initialization
+    flag =0;
+    while(flag == 0)
+        randPos = floor(size(G,1)*rand(1,2));
+        if (G(randPos(1), randPos(2)) < 0.25*Gmax)
+            flag = 1;
+            F(randPos(1), randPos(2)) = 1;
+            timer(randPos(1), randPos(2)) = 5;
+        end 
+    end
 	% Loop for forest fire and path finding
 	for i = 1:inf
 		% Perform forest fire

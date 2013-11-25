@@ -23,18 +23,6 @@ F = zeros(h,w);         % Setting fire matrix
 timer = zeros(h,w);     % Setting countdown matrix for fire duration
 
 
-% Fire Initialization
-flag =0;
-while(flag == 0)
-    randPos = floor(size(G,1)*rand(1,2));
-    if (Gold(randPos(1), randPos(2)) < 0.25*Gmax)
-        flag = 1;
-        F(randPos(1), randPos(2)) = 1;
-        timer(randPos(1), randPos(2)) = 5;
-        
-    end 
-end
-
 
 
 % Path finding parameters
