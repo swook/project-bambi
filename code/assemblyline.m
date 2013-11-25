@@ -1,4 +1,4 @@
-function [G, A_pos] = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N, F, timer)
+function assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N, F, timer)
 % ASSEMBLYLINE Performs all calculations which are part of our model, namely:
 %              1. Trail formation by agents on a grid of vegetation.
 %              2. The spreading of a forest fire on the mentioned grid.
@@ -20,12 +20,16 @@ function [G, A_pos] = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nag
 		end
 	end
 
+	% Store statistics
+	NEscaped = 0;
+	NDead = 0;
+
 	% Loop for forest fire and path finding
 	for i = 1:inf
 		% Perform forest fire
 		cd 'forest-fire'
 	        [F G timer] = Fire(F, G, timer, Gmax);
-            [G] = generateNewG(F, G, Gmax);
+		[G] = generateNewG(F, G, Gmax);
 		cd ..
 
 		% Perform path finding
@@ -34,7 +38,7 @@ function [G, A_pos] = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nag
 		cd ..
 
 		% Remove the dead Bambis. We don't need them.
-		[A_pos, A_dest] = removeDeadBambis(F, A_pos, A_dest, h, w);
+		[A_pos, A_dest, NEscaped, NDead] = removeDeadBambis(F, A_pos, A_dest, h, w, NEscaped, NDead);
 
 		% Visualise this situation
 		cd 'visualisation'
@@ -45,8 +49,12 @@ function [G, A_pos] = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nag
 		pause(0.1);
 
 		% Check if we should stop. (Are all Bambis dead or at their destinations?)
-		if size(A_pos, 1) < 1
+		% Also stop if fire is extinguished.
+		if size(A_pos, 1) < 1 || sum(double(F(:) > 0)) == 0
 			break
 		end
 	end
+
+	disp(sprintf('\n> %d Bambis died while running away from the fire... RIP.\n', NDead));
+	disp(sprintf('\n> %d Bambis escaped successfully. Hooray!\n', NEscaped));
 end

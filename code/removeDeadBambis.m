@@ -1,4 +1,4 @@
-function [newA_pos, newA_dest] = removeDeadBambis(F, A_pos, A_dest, h, w)
+function [newA_pos, newA_dest, NEscaped, NDead] = removeDeadBambis(F, A_pos, A_dest, h, w, NEscaped, NDead)
 % REMOVEDEADBAMBIS Removes all dead or escaped agents from grid
 	newA_pos   = [];
 	newA_dest  = [];
@@ -9,8 +9,14 @@ function [newA_pos, newA_dest] = removeDeadBambis(F, A_pos, A_dest, h, w)
 
 	Nonfire = 0;
 	for i = 1:nagent
-		% If Bambi is at its destination or on a cell on fire
-		if norm(A_pos(i, :) - A_dest(i, :)) < 3 || F(A_pos(i, 2), A_pos(i, 1)) > 0
+		% If Bambi is at its destination
+		if norm(A_pos(i, :) - A_dest(i, :)) < 3
+			NEscaped = NEscaped + 1;
+			continue;
+		end
+		% If Bambi is on a cell on fire
+		if F(A_pos(i, 2), A_pos(i, 1)) > 0
+			NDead = NDead + 1;
 			continue;
 		end
 

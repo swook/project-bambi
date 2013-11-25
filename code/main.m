@@ -29,5 +29,5 @@ timer = zeros(h,w);     % Setting countdown matrix for fire duration
 
 
 % Perform set of instructions
-[G, A_pos] = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N, F, timer);
+assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N, F, timer);
 
