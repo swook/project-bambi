@@ -15,15 +15,19 @@ nagent = 50;  % Number of bambis
 
 N = 100; % Number of iterations
 
+
 % Forest fire parameters
+F = zeros(h,w);      % Setting fire matrix
+timer = zeros(h,w);     % Setting countdown matrix for fire duration
+
 
 % Fire Initialization
-Fi = zeros(h,w);
-origin = [50 50];   % Coordinates of the starting point of the fire
-Fi(origin) = 1;     % Setting that point on fire
+F(h/2,w/2) = 1;     % Setting that point on fire
+timer(h/2,w/2) = 5;
+
 
 % Path finding parameters
 
 
 % Perform set of instructions
-[G, A_pos] = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, nagent, N);
+[G, A_pos] = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, nagent, N, F, timer);

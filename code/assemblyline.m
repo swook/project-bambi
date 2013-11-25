@@ -1,4 +1,4 @@
-function [G, A_pos] = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N)
+function [G, A_pos] = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N, F, timer)
 % ASSEMBLYLINE Performs all calculations which are part of our model, namely:
 %              1. Trail formation by agents on a grid of vegetation.
 %              2. The spreading of a forest fire on the mentioned grid.
@@ -8,20 +8,17 @@ function [G, A_pos] = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nag
 	cd 'trail-formation'
 	[G, A_pos] = trail(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N);
 	cd ..
-
-	% Let's stop here for now
-% 	return;
-
+	
 	% Loop for forest fire and path finding
 	for i = 1:inf
 		% Perform forest fire
 		cd 'forest-fire'
-%         spreadfire(G);
+	        [F G timer] = Fire(F, G, timer, Gmax);
 		cd ..
 
 		% Perform path finding
 		cd 'path-finding'
-		[G, A_pos] = pathfind(G, F, sigma, v, A_pos, dests);
+		%[G, A_pos] = pathfind(G, F, sigma, v, A_pos, dests);
 		cd ..
 
 		% Remove the dead Bambis. We don't need them.
