@@ -2,15 +2,15 @@ function [newA_pos, newA_dest] = removeDeadBambis(F, A_pos, A_dest, h, w)
 % REMOVEDEADBAMBIS Removes all dead or escaped agents from grid
 	newA_pos   = [];
 	newA_dest  = [];
-	neighbours = {[0 0], [1 0], [0 1], [-1 0], [0 -1]};
+	neighbours = {[1 0], [0 1], [-1 0], [0 -1]};
 
 	nagent = size(A_pos, 1);
 	nneigh = numel(neighbours);
 
 	Nonfire = 0;
 	for i = 1:nagent
-		% If Bambi is at its destination
-		if norm(A_pos(i, :) - A_dest(i, :)) < 3
+		% If Bambi is at its destination or on a cell on fire
+		if norm(A_pos(i, :) - A_dest(i, :)) < 3 || F(A_pos(i, 2), A_pos(i, 1)) > 0
 			continue;
 		end
 
