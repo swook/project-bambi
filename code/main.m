@@ -10,11 +10,11 @@ sigma = 2.0;  % Visibility function
 v     = 1.0;  % Speed of agents
 
 % Possible destinations of agents
-dests = {[1 1], [50 50], [50 1], [1 50]};
+dests = {[1 1], [80 1], [1 45], [80 45]};
 
-h      = 50; % Grid height
-w      = 50; % Grid width
-nagent = 50; % Number of bambis
+h      = 45; % Grid height
+w      = 80; % Grid width
+nagent = 70; % Number of bambis
 
 N = 150; % Number of iterations
 

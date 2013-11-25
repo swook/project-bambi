@@ -8,9 +8,16 @@ function nPos = nextPos(A_pos, e, v, dt, h, w)
 	% If new position is below 1, set to 1
 	nPos(nPos <= 0) = 1;
 
-	% If new x-position is below width
-	nPos(nPos(:, 1) > w) = w;
+	nagent = size(A_pos, 1);
+	for p = 1:nagent
+		% If new x-position is above width
+		if nPos(p, 1) > w
+			nPos(p, 1) = w;
+		end
 
-	% If new y-position is below height
-	nPos(nPos(:, 2) > h) = h;
+		% If new y-position is above height
+		if nPos(p, 2) > h
+			nPos(p, 2) = h;
+		end
+	end
 end
