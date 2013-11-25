@@ -6,8 +6,6 @@ function draw(Gmax, G, A, e, F)
 	global Vis_IBambi_BGIdxsL;
 	global Vis_IGrass;
 	global Vis_IGrass_Total;
-	global Vis_IFire;
-	global Vis_IFire_BGIdxs;
 	global Vis_IFire_Total;
 	global Vis_Frame;
 	global Vis_BG;
@@ -42,15 +40,18 @@ function draw(Gmax, G, A, e, F)
 		Vis_IGrass_Total  = reshape(repmat(Vis_IGrass, w, 1), ph, Iw, 3);
 		Vis_IGrass_Total  = repmat(Vis_IGrass_Total, h, 1);
 	end
-	if numel(Vis_IFire) ~= pn
-		Vis_IFire        = reshape(imread('fire.jpg'), pn, 3);
-		Vis_IFire_Total  = reshape(repmat(Vis_IFire, w, 1), ph, Iw, 3);
-		Vis_IFire_Total  = repmat(Vis_IFire_Total, h, 1);
-		Vis_IFire        = reshape(Vis_IFire, ph, pw, 3);
+	if numel(Vis_IFire_Total) ~= pn
+		Vis_IFire        = imread('fire.jpg');
 		Vis_IFire_Flat   = sum(Vis_IFire, 3);
+		Vis_IFire_Flat   = cat(3, Vis_IFire_Flat, Vis_IFire_Flat, Vis_IFire_Flat);
+
+		% Find background
 		Vis_IFire_BGIdxs = Vis_IFire_Flat < 50;
-		Vis_IFire_BGIdxs = repmat(Vis_IFire_BGIdxs, h, w);
-		Vis_IFire_BGIdxs = cat(3, Vis_IFire_BGIdxs, Vis_IFire_BGIdxs, Vis_IFire_BGIdxs);
+		Vis_IFire(Vis_IFire_BGIdxs) = zeros(size(Vis_IFire(Vis_IFire_BGIdxs))); % Set it to 0
+
+		Vis_IFire_Total  = reshape(repmat(reshape(Vis_IFire, pn, 3), w, 1), ph, Iw, 3);
+		Vis_IFire_Total  = repmat(Vis_IFire_Total, h, 1);
+		Vis_IFire_Total  = reshape(Vis_IFire_Total, Ih, Iw, 3);
 	end
 
 	% Initialise frame if not done already
