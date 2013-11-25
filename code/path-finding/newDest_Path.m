@@ -10,7 +10,7 @@ function newD = newDest_Path(A_pos, A_dest, dests)
 	for i = 1:nagent
 
 		% Calculate distance between agent and its current destination
-		dist_cur   = norm(A_pos(i, :) - A_dest(i, :))
+		dist_cur   = norm(A_pos(i, :) - A_dest(i, :));
 		newD(i, :) = A_dest(i, :);
 
 		% Loop through available destinations
