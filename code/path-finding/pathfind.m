@@ -13,7 +13,7 @@ function [G, A_pos] = pathfind(G, F, sigma, v, A_pos, dests)
 	A_dest = repmat(dests{1}, nagent, 1);
 
 	% Set nearest destination to be dest of agents
-	newDest(A_pos, A_dest, dests);
+	newDest_Path(A_pos, A_dest, dests);
 
 	% Matrix of sigma values, in matrix form. Can use a grid of variable
 	% visibility in the future.
@@ -23,5 +23,5 @@ function [G, A_pos] = pathfind(G, F, sigma, v, A_pos, dests)
 	V      = calcV(G, A_pos, sigma);
 	e      = calcDirection(V, A_pos, A_dest);
 	A_pos  = nextPos(A_pos, e, v, dt, h, w);
-	A_dest = newDest(A_pos, A_dest, dests);
+	A_dest = newDest_Path(A_pos, A_dest, dests);
 end

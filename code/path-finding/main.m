@@ -1,4 +1,3 @@
-function main()
-	cd ..
-	main();
-end
+clear all;
+cd ..
+main();
