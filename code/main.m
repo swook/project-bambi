@@ -14,19 +14,27 @@ dests = {[1 1], [50 50], [50 1], [1 50]};
 
 h      = 50; % Grid height
 w      = 50; % Grid width
-nagent = 50;  % Number of bambis
+nagent = 50; % Number of bambis
 
-N = 100; % Number of iterations
-
+N = 150; % Number of iterations
 
 % Forest fire parameters
-F = zeros(h,w);      % Setting fire matrix
+F = zeros(h,w);         % Setting fire matrix
 timer = zeros(h,w);     % Setting countdown matrix for fire duration
 
 
 % Fire Initialization
-F(h/2,w/2) = 1;     % Setting that point on fire
-timer(h/2,w/2) = 5;
+flag =0;
+while(flag == 0)
+    randPos = floor(size(G,1)*rand(1,2));
+    if (Gold(randPos(1), randPos(2)) < 0.25*Gmax)
+        flag = 1;
+        F(randPos(1), randPos(2)) = 1;
+        timer(randPos(1), randPos(2)) = 5;
+        
+    end 
+end
+
 
 
 % Path finding parameters

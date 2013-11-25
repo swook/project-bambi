@@ -14,6 +14,7 @@ function [G, A_pos] = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nag
 		% Perform forest fire
 		cd 'forest-fire'
 	        [F G timer] = Fire(F, G, timer, Gmax);
+            [G] = generateNewG(F, G, Gmax);
 		cd ..
 
 		% Perform path finding
