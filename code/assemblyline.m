@@ -8,7 +8,7 @@ function [G, A_pos] = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nag
 	cd 'trail-formation'
 	[G, A_pos] = trail(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N);
 	cd ..
-	
+
 	% Loop for forest fire and path finding
 	for i = 1:inf
 		% Perform forest fire
@@ -18,13 +18,23 @@ function [G, A_pos] = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nag
 
 		% Perform path finding
 		cd 'path-finding'
-		%[G, A_pos] = pathfind(G, F, sigma, v, A_pos, dests);
+		[G, A_pos, A_dest, e] = pathfind(G, F, sigma, v, A_pos, dests);
 		cd ..
 
 		% Remove the dead Bambis. We don't need them.
-		[F, A_pos]= removeDeadBambis();
+		A_pos = removeDeadBambis(F, A_pos, A_dest, h, w);
+
+		% Visualise this situation
+		cd 'visualisation'
+		visualise(Gmax, G, A_pos, e, F);
+		cd ..
+
+		% Pause momentarily
+		pause(0.1);
 
 		% Check if we should stop. (Are all Bambis dead or at their destinations?)
-		termCond = termCheck();
+		if size(A_pos, 1) < 1
+			break
+		end
 	end
 end

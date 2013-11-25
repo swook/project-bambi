@@ -1,4 +1,4 @@
-function [G, A_pos] = pathfind(G, F, sigma, v, A_pos, dests)
+function [G, A_pos, A_dest, e] = pathfind(G, F, sigma, v, A_pos, dests)
 % PATHFIND Carries a step of path finding out by taking into account the spread
 %          of fire and G (likability of area).
 

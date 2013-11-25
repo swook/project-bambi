@@ -1,5 +1,5 @@
 function I = visualise(Gmax, G, varargin)
-% VISUALISE(Gmax, G, A, F, e) Visualises trail (G), fire (F), agents (A), and
+% VISUALISE(Gmax, G, A, e, F) Visualises trail (G), fire (F), agents (A), and
 %                             agents' direction (e). G and F are equal size
 %                             grids, while agents is a Nx2 matrix where each row
 %                             is position [x, y] of an agent.

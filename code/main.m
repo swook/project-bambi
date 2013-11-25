@@ -16,7 +16,7 @@ h      = 50; % Grid height
 w      = 50; % Grid width
 nagent = 50;  % Number of bambis
 
-N = 10000; % Number of iterations
+N = 100; % Number of iterations
 
 
 % Forest fire parameters
