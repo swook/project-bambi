@@ -1,6 +1,7 @@
-function draw(Gmax, G, A, F)
+function draw(Gmax, G, A, e, F)
 	% Declare / Get globals
 	global Vis_IBambi;
+	global Vis_IBambiL;
 	global Vis_IBambi_BGIdxs;
 	global Vis_IGrass;
 	global Vis_IGrass_Total;
@@ -25,6 +26,7 @@ function draw(Gmax, G, A, F)
 	% Load Bambi, Fire, and Grass as needed
 	if numel(Vis_IBambi) ~= pn
 		Vis_IBambi = imread('bambi.jpg');
+		Vis_IBambiL = flipdim(Vis_IBambi, 2);
 		Vis_IBambi_Flat = sum(Vis_IBambi, 3);
 		Vis_IBambi_Flat = cat(3, Vis_IBambi_Flat, Vis_IBambi_Flat, Vis_IBambi_Flat);
 		Vis_IBambi_BGIdxs = Vis_IBambi_Flat < 45;
@@ -70,7 +72,11 @@ function draw(Gmax, G, A, F)
 			y1 = y0 + ph - 1;
 			x1 = x0 + pw - 1;
 
-			bambi = Vis_IBambi;
+			if e(i, 1) < 0
+				bambi = Vis_IBambiL;
+			else
+				bambi = Vis_IBambi;
+			end
 			grid  = Vis_Frame(y0:y1, x0:x1, :);
 			bambi(Vis_IBambi_BGIdxs) = grid(Vis_IBambi_BGIdxs);
 

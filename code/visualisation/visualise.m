@@ -1,7 +1,8 @@
 function I = visualise(Gmax, G, varargin)
-% VISUALISE(Gmax, G, A, F) Visualises trail (G), fire (F), and agents (A).
-%                          G and F are equal size grids, while agents is a Nx2 matrix
-%                          where each row is position [x, y] of an agent.
+% VISUALISE(Gmax, G, A, F, e) Visualises trail (G), fire (F), agents (A), and
+%                             agents' direction (e). G and F are equal size
+%                             grids, while agents is a Nx2 matrix where each row
+%                             is position [x, y] of an agent.
 
 	% Get agents
 	A = zeros();
@@ -9,13 +10,19 @@ function I = visualise(Gmax, G, varargin)
 		A = varargin{1};
 	end
 
-	% Get fire grid, F
-	F = zeros(size(G));
+	% Get agent direction
+	e = zeros(size(A));
 	if nargin >= 4
-		F = varargin{2};
+		e = varargin{2};
 	end
 
-	draw(Gmax, G, A, F);
+	% Get fire grid, F
+	F = zeros(size(G));
+	if nargin >= 5
+		F = varargin{3};
+	end
+
+	draw(Gmax, G, A, e, F);
 
 	global Vis_Frame;
 	imshow(Vis_Frame);
