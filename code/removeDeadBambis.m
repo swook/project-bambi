@@ -1,7 +1,8 @@
-function [newA_pos, newA_dest, NEscaped, NDead] = removeDeadBambis(F, A_pos, A_dest, h, w, NEscaped, NDead)
+function [newA_pos, newA_dest, newA_run, NEscaped, NDead] = removeDeadBambis(F, A_pos, A_dest, A_running, h, w, NEscaped, NDead)
 % REMOVEDEADBAMBIS Removes all dead or escaped agents from grid
 	newA_pos   = [];
 	newA_dest  = [];
+	newA_run   = [];
 	neighbours = {[1 0], [0 1], [-1 0], [0 -1]};
 
 	nagent = size(A_pos, 1);
@@ -10,7 +11,7 @@ function [newA_pos, newA_dest, NEscaped, NDead] = removeDeadBambis(F, A_pos, A_d
 	Nonfire = 0;
 	for i = 1:nagent
 		% If Bambi is at its destination
-		if norm(A_pos(i, :) - A_dest(i, :)) < 3
+		if norm(A_pos(i, :) - A_dest(i, :)) < 5
 			NEscaped = NEscaped + 1;
 			continue;
 		end
@@ -36,6 +37,7 @@ function [newA_pos, newA_dest, NEscaped, NDead] = removeDeadBambis(F, A_pos, A_d
 		if Nonfire < nneigh
 			newA_pos  = [newA_pos; A_pos(i, :)];
 			newA_dest = [newA_dest; A_dest(i, :)];
+			newA_run  = [newA_run; A_running(i)];
 		end
 	end
 end

@@ -1,4 +1,4 @@
-function e = calcDirection_Path (V, FV, A_pos, A_dest)
+function [e, A_running] = calcDirection_Path (V, FV, A_pos, A_dest, A_running)
 % CALCDIRECTION Calculates the direction an agent should move in this time step
 
 	h = size(V, 1);     % Height of grid
@@ -15,9 +15,10 @@ function e = calcDirection_Path (V, FV, A_pos, A_dest)
 		x = A_pos(p, 1);
 		y = A_pos(p, 2);
 
-		if FV(y, x) < 0.5
+		if A_running(p) == 0 && FV(y, x) < 0.8
 			continue;
 		end
+		A_running(p) = 1;
 
 		if x + 1 > w
 			% Upper X coordinate beyond width of grid
@@ -60,7 +61,7 @@ function e = calcDirection_Path (V, FV, A_pos, A_dest)
 		fg = [fX fY]; % Gradient vector for fire potential
 		% disp(sprintf('dR: %.4g, g: %.4g, fg: %.4g\n', norm(dR(p, :)), g_norm, norm(fg)));
 
-		numer = dR(p, :) + g - 100 * fg; % Add contribution from dest and grad-V
+		numer = dR(p, :) + g - 50 * fg; % Add contribution from dest and grad-V
 		norm_numer = norm(numer);
 
 		if norm_numer == 0.0 % If numerator 0, don't divide by 0, set to 0

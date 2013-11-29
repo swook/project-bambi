@@ -29,6 +29,8 @@ function assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N, F, ti
 	NEscaped = 0;
 	NDead = 0;
 
+	A_running = zeros(nagent, 1);
+
 	% Loop for forest fire and path finding
 	for i = 1:inf
 		% Perform forest fire
@@ -39,11 +41,11 @@ function assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N, F, ti
 
 		% Perform path finding
 		cd 'path-finding'
-		[G, A_pos, A_dest, e] = pathfind(G, F, sigma, v, A_pos, A_dest, dests);
+		[G, A_pos, A_dest, A_running, e] = pathfind(G, F, Gmax, sigma, v, A_pos, A_dest, A_running, dests);
 		cd ..
 
 		% Remove the dead Bambis. We don't need them.
-		[A_pos, A_dest, NEscaped, NDead] = removeDeadBambis(F, A_pos, A_dest, h, w, NEscaped, NDead);
+		[A_pos, A_dest, A_running, NEscaped, NDead] = removeDeadBambis(F, A_pos, A_dest, A_running, h, w, NEscaped, NDead);
 
 		% Visualise this situation
 		cd 'visualisation'
