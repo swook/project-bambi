@@ -60,9 +60,6 @@ function stats = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, 
 		visualise(Gmax, G, A_pos, e, F);
 		cd ..
 
-		% Pause momentarily
-		pause(0.1);
-
 		% Check if we should stop. (Are all Bambis dead or at their destinations?)
 		% Also stop if fire is extinguished.
 		if size(A_pos, 1) < 1 || sum(double(F(:) > 0)) == 0

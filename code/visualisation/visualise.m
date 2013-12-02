@@ -33,6 +33,9 @@ function I = visualise(Gmax, G, varargin)
 	global Vis_Frame;
 	imshow(Vis_Frame);
 
+	% Pause momentarily
+	pause(0.1);
+
 	% Store frame into video file
 	global Vis_WriteEnabled;
 	if Vis_WriteEnabled
