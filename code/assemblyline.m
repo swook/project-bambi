@@ -1,4 +1,4 @@
-function assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N, F, timer, flags)
+function stats = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N, F, timer, flags)
 % ASSEMBLYLINE Performs all calculations which are part of our model, namely:
 %              1. Trail formation by agents on a grid of vegetation.
 %              2. The spreading of a forest fire on the mentioned grid.
