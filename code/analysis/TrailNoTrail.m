@@ -37,15 +37,20 @@ function TrailNoTrail()
 	[genA_pos, genA_dest] = PlaceAgents(h, w, nagent, dests);
 	cd ../analysis
 
+	% Set fire to middle-top pixels
+	F(1:2, 24:26) = 1;
+
 	% Perform set of instructions
 	global Vis_Disabled;
-	Vis_Disabled = true;
+	Vis_Disabled = false;
 	NoVideo   = true;
 	cd ..
 
-	stats = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N, F, timer,...
-		struct('NoVideo', NoVideo, 'NoFireInit', 1),...
-		struct('A_pos', genA_pos, 'A_dest', genA_dest));
+	for i = 1:15
+		stats = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, i * 20, F, timer,...
+			struct('NoVideo', NoVideo, 'NoFireInit', 1),...
+			struct('A_pos', genA_pos, 'A_dest', genA_dest));
+	end
 
 	cd analysis
 	Vis_Disabled = false;
