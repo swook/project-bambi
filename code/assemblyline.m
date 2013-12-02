@@ -35,7 +35,7 @@ function stats = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, 
 	end
 
 	% Store statistics
-	stats = struct('Escaped', 0, 'Dead', 0);
+	stats = struct('Escaped', 0, 'Dead', 0, 'SurvivalRate', 0);
 
 	A_running = zeros(nagent, 1);
 
@@ -74,6 +74,8 @@ function stats = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, 
 		cd ..
 	end
 
+	stats.SurvivalRate = (nagent - stats.Dead) / nagent * 100;
 	disp(sprintf('\n> %d Bambis died while running away from the fire... RIP.\n', stats.Dead));
 	disp(sprintf('\n> %d Bambis escaped successfully. Hooray!\n', stats.Escaped));
+	disp(sprintf('\n> The survival rate of the Bambis is: %.1f\n', stats.SurvivalRate))
 end
