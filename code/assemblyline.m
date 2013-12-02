@@ -40,7 +40,7 @@ function stats = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, 
 	A_running = zeros(nagent, 1);
 
 	% Loop for forest fire and path finding
-	for i = 1:inf
+	while 1
 		% Perform forest fire
 		cd 'forest-fire'
 		[F G timer] = Fire(F, G, timer, Gmax);
