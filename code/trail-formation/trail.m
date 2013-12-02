@@ -1,4 +1,4 @@
-function [G, A_pos, A_dest] = trail(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N)
+function [G, A_pos, A_dest] = trail(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N, extraparams)
 % TRAIL Carries out trail formation
 
 	% Set initial parameters
@@ -9,7 +9,12 @@ function [G, A_pos, A_dest] = trail(Gzero, Gmax, I, T, sigma, v, h, w, dests, na
 	sigma = sigma * ones(h,w);  % Grid of visibility values
 
 	%% Initial agents placement
-	[A_pos, A_dest] = PlaceAgents(h, w, nagent, dests);  % Agents (bambis) positions matrix (x,y)
+	if isfield(extraparams, 'A_pos') && isfield(extraparams, 'A_dest')
+		A_pos = extraparams.A_pos;
+		A_dest = extraparams.A_dest;
+	else
+		[A_pos, A_dest] = PlaceAgents(h, w, nagent, dests);  % Agents (bambis) positions matrix (x,y)
+	end
 	A_dir = zeros(nagent,2);  % Agents (bambis) direction (x,y)
 
 	%% Run simulation

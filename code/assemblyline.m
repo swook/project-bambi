@@ -1,4 +1,4 @@
-function stats = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N, F, timer, flags)
+function stats = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N, F, timer, flags, extraparams)
 % ASSEMBLYLINE Performs all calculations which are part of our model, namely:
 %              1. Trail formation by agents on a grid of vegetation.
 %              2. The spreading of a forest fire on the mentioned grid.
@@ -17,7 +17,7 @@ function stats = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, 
 	% Perform trail formation
 	if ~isfield(flags, 'NoTrail') || ~flags.NoTrail
 		cd 'trail-formation'
-		[G, A_pos, A_dest] = trail(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N);
+		[G, A_pos, A_dest] = trail(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N, extraparams);
 		cd ..
 	end
 
