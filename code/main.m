@@ -29,8 +29,8 @@ timer = zeros(h,w);     % Setting countdown matrix for fire duration
 
 
 % Perform set of instructions
-StoreVideo = true;
+NoVideo = true;
 
 assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N, F, timer,...
-	struct('NoVideo', StoreVideo));
+	struct('NoVideo', NoVideo));
 
