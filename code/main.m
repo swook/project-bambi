@@ -1,4 +1,4 @@
-%clear all;
+clear all;
 clc;
 
 % Trail formation parameters
@@ -9,28 +9,23 @@ T     = 200;  % Durability of trails
 sigma = 2.0;  % Visibility function
 v     = 1.0;  % Speed of agents
 
-% Possible destinations of agents
-dests = {[1 1], [80 1], [1 45], [80 45]};
-
 h      = 45; % Grid height
 w      = 80; % Grid width
-nagent = 70; % Number of bambis
+nagent = 50; % Number of bambis
 
-N = 150; % Number of iterations
+% Destinations of agents
+dests = {[1, 1], [w, 1], [1, h], [w, h]};
+
+% Number of iterations
+N = 150;
 
 % Forest fire parameters
 F = zeros(h,w);         % Setting fire matrix
 timer = zeros(h,w);     % Setting countdown matrix for fire duration
 
-
-
-
-% Path finding parameters
-
-
 % Perform set of instructions
-NoVideo = true;
+NoVideo = false;
 
+% Run simulation
 assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N, F, timer,...
 	struct('NoVideo', NoVideo), struct());
-
