@@ -1,9 +1,11 @@
 function initVideo()
 	global Vis_Filename;
 	global Vis_VObj;
+	global Vis_Enabled;
 
 	Vis_Filename = ['../../videos/' datestr(now) '.avi'];
-	Vis_VObj     = VideoWriter(Vis_Filename, 'Motion JPEG 2000');
-	Vis_VObj.FrameRate = 8; % Store at 8fps
+	Vis_VObj     = VideoWriter(Vis_Filename);
+	Vis_VObj.FrameRate = 6 % Store at 8fps
 	open(Vis_VObj);
+	Vis_Enabled = true;
 end

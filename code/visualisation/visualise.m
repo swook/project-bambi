@@ -29,6 +29,9 @@ function I = visualise(Gmax, G, varargin)
 	imshow(Vis_Frame);
 
 	% Store frame into video file
-	global Vis_VObj;
-	writeVideo(Vis_VObj, Vis_Frame);
+	global Vis_Enabled;
+	if Vis_Enabled
+		global Vis_VObj;
+		writeVideo(Vis_VObj, Vis_Frame);
+	end
 end

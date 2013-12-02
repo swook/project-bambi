@@ -1,33 +1,41 @@
-function assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N, F, timer)
+function assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N, F, timer, flags)
 % ASSEMBLYLINE Performs all calculations which are part of our model, namely:
 %              1. Trail formation by agents on a grid of vegetation.
 %              2. The spreading of a forest fire on the mentioned grid.
 %              3. The path finding of an agent in the grid in the case of fire.
 
 	% Initialise video file
-	cd 'visualisation'
-	initVideo;
-	cd ..
+	global Vis_Enabled;
+	Vis_Enabled = false;
+
+	if ~isfield(flags, 'NoVideo') || ~flags.NoVideo
+		cd 'visualisation'
+		initVideo;
+		cd ..
+	end
 
 	% Perform trail formation
-	cd 'trail-formation'
-	[G, A_pos, A_dest] = trail(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N);
-	cd ..
+	if ~isfield(flags, 'NoTrail') || ~flags.NoTrail
+		cd 'trail-formation'
+		[G, A_pos, A_dest] = trail(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N);
+		cd ..
+	end
 
 	% Fire Initialization
-	flag = 0;
-	while(flag == 0)
-		randPos = floor(size(G,1)*rand(1,2)) + 1;
-		if (G(randPos(1), randPos(2)) < 0.25*Gmax)
-			flag = 1;
-			F(randPos(1), randPos(2)) = 1;
-			timer(randPos(1), randPos(2)) = 5;
+	if ~isfield(flags, 'NoFireInit') || ~flags.NoFireInit
+		flag = 0;
+		while(flag == 0)
+			randPos = floor(size(G,1)*rand(1,2)) + 1;
+			if (G(randPos(1), randPos(2)) < 0.25*Gmax)
+				flag = 1;
+				F(randPos(1), randPos(2)) = 1;
+				timer(randPos(1), randPos(2)) = 5;
+			end
 		end
 	end
 
 	% Store statistics
-	NEscaped = 0;
-	NDead = 0;
+	stats = struct('Escaped', 0, 'Dead', 0);
 
 	A_running = zeros(nagent, 1);
 
@@ -35,7 +43,7 @@ function assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N, F, ti
 	for i = 1:inf
 		% Perform forest fire
 		cd 'forest-fire'
-	        [F G timer] = Fire(F, G, timer, Gmax);
+		[F G timer] = Fire(F, G, timer, Gmax);
 		[G] = generateNewG(F, G, Gmax);
 		cd ..
 
@@ -45,7 +53,7 @@ function assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N, F, ti
 		cd ..
 
 		% Remove the dead Bambis. We don't need them.
-		[A_pos, A_dest, A_running, NEscaped, NDead] = removeDeadBambis(F, A_pos, A_dest, A_running, h, w, NEscaped, NDead);
+		[A_pos, A_dest, A_running, stats] = removeDeadBambis(F, A_pos, A_dest, A_running, h, w, stats);
 
 		% Visualise this situation
 		cd 'visualisation'
@@ -63,10 +71,12 @@ function assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N, F, ti
 	end
 
 	% Close video file
-	cd 'visualisation'
-	closeVideo;
-	cd ..
+	if ~isfield(flags, 'NoVideo') || ~flags.NoVideo
+		cd 'visualisation'
+		closeVideo;
+		cd ..
+	end
 
-	disp(sprintf('\n> %d Bambis died while running away from the fire... RIP.\n', NDead));
-	disp(sprintf('\n> %d Bambis escaped successfully. Hooray!\n', NEscaped));
+	disp(sprintf('\n> %d Bambis died while running away from the fire... RIP.\n', stats.Dead));
+	disp(sprintf('\n> %d Bambis escaped successfully. Hooray!\n', stats.Escaped));
 end
