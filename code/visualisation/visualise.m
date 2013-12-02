@@ -4,6 +4,11 @@ function I = visualise(Gmax, G, varargin)
 %                             grids, while agents is a Nx2 matrix where each row
 %                             is position [x, y] of an agent.
 
+	global Vis_Disabled
+	if Vis_Disabled
+		return;
+	end
+
 	% Get agents
 	A = zeros();
 	if nargin >= 3
@@ -29,8 +34,8 @@ function I = visualise(Gmax, G, varargin)
 	imshow(Vis_Frame);
 
 	% Store frame into video file
-	global Vis_Enabled;
-	if Vis_Enabled
+	global Vis_WriteEnabled;
+	if Vis_WriteEnabled
 		global Vis_VObj;
 		writeVideo(Vis_VObj, Vis_Frame);
 	end

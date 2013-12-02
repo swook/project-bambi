@@ -5,8 +5,8 @@ function stats = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, 
 %              3. The path finding of an agent in the grid in the case of fire.
 
 	% Initialise video file
-	global Vis_Enabled;
-	Vis_Enabled = false;
+	global Vis_WriteEnabled;
+	Vis_WriteEnabled = false;
 
 	if ~isfield(flags, 'NoVideo') || ~flags.NoVideo
 		cd 'visualisation'
