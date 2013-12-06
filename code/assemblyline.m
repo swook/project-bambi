@@ -26,7 +26,7 @@ function stats = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, 
 			extraparams.NoVis = true;
 		end
 		[G, A_pos, A_dest] = trail(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N, extraparams);
-		stats,G_postTrail = G;
+		stats.G_postTrail = G;
 		stats.A_pos_postTrail = A_pos;
 		cd ..
 	end
@@ -94,5 +94,5 @@ function stats = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, 
 	stats.SurvivalRate = (nagent - stats.Dead) / nagent * 100;
 	disp(sprintf('\n> %d Bambis died while running away from the fire... RIP.\n', stats.Dead));
 	disp(sprintf('\n> %d Bambis escaped successfully. Hooray!\n', stats.Escaped));
-	disp(sprintf('\n> The survival rate of the Bambis is: %.1f\n', stats.SurvivalRate))
+	disp(sprintf('\n> The survival rate of the Bambis is: %.1f\n', stats.SurvivalRate));
 end
