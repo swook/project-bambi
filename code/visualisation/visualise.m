@@ -4,11 +4,6 @@ function I = visualise(Gmax, G, varargin)
 %                             grids, while agents is a Nx2 matrix where each row
 %                             is position [x, y] of an agent.
 
-	global Vis_Disabled
-	if Vis_Disabled
-		return;
-	end
-
 	% Get agents
 	A = zeros();
 	if nargin >= 3

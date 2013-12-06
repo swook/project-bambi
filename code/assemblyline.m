@@ -8,7 +8,7 @@ function stats = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, 
 	global Vis_WriteEnabled;
 	Vis_WriteEnabled = false;
 
-	if ~isfield(flags, 'NoVideo') || ~flags.NoVideo
+	if ~isfield(flags, 'NoVideo') || ~flags.NoVideo || ~isfield(flags, 'NoVis') || ~flags.NoVis
 		cd 'visualisation'
 		initVideo;
 		cd ..
@@ -17,6 +17,11 @@ function stats = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, 
 	% Perform trail formation
 	if ~isfield(flags, 'NoTrail') || ~flags.NoTrail
 		cd 'trail-formation'
+		if ~isfield(flags, 'NoVis') || ~flags.NoVis
+			extraparams.NoVis = false;
+		else
+			extraparams.NoVis = true;
+		end
 		[G, A_pos, A_dest] = trail(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N, extraparams);
 		cd ..
 	end
@@ -56,9 +61,12 @@ function stats = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, 
 		[A_pos, A_dest, A_running, stats] = removeDeadBambis(F, A_pos, A_dest, A_running, h, w, stats);
 
 		% Visualise this situation
-		cd 'visualisation'
-		visualise(Gmax, G, A_pos, e, F);
-		cd ..
+		if ~isfield(flags, 'NoVis') || ~flags.NoVis
+			cd 'visualisation'
+			visualise(Gmax, G, A_pos, e, F);
+			cd ..
+		end
+
 
 		% Check if we should stop. (Are all Bambis dead or at their destinations?)
 		% Also stop if fire is extinguished.
@@ -68,7 +76,7 @@ function stats = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, 
 	end
 
 	% Close video file
-	if ~isfield(flags, 'NoVideo') || ~flags.NoVideo
+	if ~isfield(flags, 'NoVideo') || ~flags.NoVideo || ~isfield(flags, 'NoVis') || ~flags.NoVis
 		cd 'visualisation'
 		closeVideo;
 		cd ..

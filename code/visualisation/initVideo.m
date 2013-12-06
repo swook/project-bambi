@@ -1,9 +1,4 @@
 function initVideo()
-	global Vis_Disabled
-	if Vis_Disabled
-		return;
-	end
-
 	global Vis_Filename;
 	global Vis_VObj;
 	global Vis_WriteEnabled;

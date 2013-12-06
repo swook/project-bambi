@@ -27,9 +27,11 @@ function [G, A_pos, A_dest] = trail(Gzero, Gmax, I, T, sigma, v, h, w, dests, na
 		A_pos  = nextPos(A_pos, e, v, dt, h, w);
 		A_dest = newDest_Trail(A_pos, A_dest, dests);
 
-		cd ../visualisation
-		visualise(Gmax, G, A_pos, e);
-		cd ../trail-formation
+		if ~isfield(extraparams, 'NoVis') || ~extraparams.NoVis
+			cd ../visualisation
+			visualise(Gmax, G, A_pos, e);
+			cd ../trail-formation
+		end
 
 		% A = zeros(size(G));
 		% for p = 1:nagent
