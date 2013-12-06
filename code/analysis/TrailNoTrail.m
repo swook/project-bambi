@@ -50,7 +50,7 @@
 	cd ../visualisation
 	global Vis_WriteEnabled;
 	Vis_WriteEnabled = false;
-	visualise(Gmax, Gzero * ones(h, w), genA_pos);
+	visualise(Gmax, Gzero * ones(h, w), genA_pos, genA_dest - genA_pos);
 	cd ../analysis
 
 	% Start parallel pool as necessary
