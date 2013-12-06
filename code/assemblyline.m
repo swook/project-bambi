@@ -46,6 +46,8 @@ function stats = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, 
 
 	% Loop for forest fire and path finding
 	while 1
+		tic;
+
 		% Perform forest fire
 		cd 'forest-fire'
 		[F G timer] = Fire(F, G, timer, Gmax);
@@ -67,6 +69,7 @@ function stats = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, 
 			cd ..
 		end
 
+		disp(['FIRE+PATH> Done with step in ' num2str(toc * 1000, 3) ' ms.' ]);
 
 		% Check if we should stop. (Are all Bambis dead or at their destinations?)
 		% Also stop if fire is extinguished.
