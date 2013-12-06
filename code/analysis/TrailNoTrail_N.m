@@ -77,7 +77,8 @@
 	errorbar(x, y, y_err);
 	xlabel 'Number of steps taken in Trail Formation';
 	ylabel 'Survival rate of agents';
-	print('-depsc', 'TrailNoTrail.eps');
-
 	cd analysis
+
+	saveas(gcf, 'TrailNoTrail_N.fig', 'fig');
+	print('-depsc', 'TrailNoTrail_N.eps');
 %end
