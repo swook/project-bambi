@@ -1,4 +1,4 @@
-function TrailNoTrail()
+%function TrailNoTrail()
 % TRAILNOTRAIL compares the situation where a trail exists or not exists and sees
 %              the effect this has on bambi survival rate while varying the parameters:
 %              - N     (Number of iterations, corresponding to trail strength)
@@ -54,4 +54,4 @@ function TrailNoTrail()
 
 	cd analysis
 	Vis_Disabled = false;
-end
+%end
