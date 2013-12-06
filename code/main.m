@@ -9,9 +9,9 @@ T     = 200;  % Durability of trails
 sigma = 2.0;  % Visibility function
 v     = 1.0;  % Speed of agents
 
-h      = 45; % Grid height
-w      = 80; % Grid width
-nagent = 50; % Number of bambis
+h      = 50; % Grid height
+w      = 50; % Grid width
+nagent = 70; % Number of bambis
 
 % Destinations of agents
 dests = {[1, 1], [w, 1], [1, h], [w, h]};
