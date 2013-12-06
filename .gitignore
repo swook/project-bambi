@@ -1,3 +1,4 @@
 *.asv
-*.m~
+*~
+.*
 code/trail-formation/g
