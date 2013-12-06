@@ -54,5 +54,5 @@ function [G, A_pos, A_dest] = trail(Gzero, Gmax, I, T, sigma, v, h, w, dests, na
 		disp(['TRAIL> Done with step ' num2str(i) ' after ' num2str(t * 1000, 3) ' ms.']);
 		pause(1e-2);
     end
-    csvwrite('g',G);
+    %csvwrite('g',G);
 end
