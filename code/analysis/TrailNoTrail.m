@@ -39,6 +39,7 @@
 
 	% Set fire to middle-top pixels
 	F(1, w/2 - 1:w/2 + 1) = 1;
+	timer(1, w/2 - 1:w/2 + 1) = 5;
 
 	% Some variables for use in plotting later on
 	x      = [];
