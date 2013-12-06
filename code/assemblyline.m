@@ -14,6 +14,9 @@ function stats = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, 
 		cd ..
 	end
 
+	% Store statistics
+	stats = struct('Escaped', 0, 'Dead', 0, 'SurvivalRate', 0);
+
 	% Perform trail formation
 	if ~isfield(flags, 'NoTrail') || ~flags.NoTrail
 		cd 'trail-formation'
@@ -23,6 +26,8 @@ function stats = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, 
 			extraparams.NoVis = true;
 		end
 		[G, A_pos, A_dest] = trail(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N, extraparams);
+		stats,G_postTrail = G;
+		stats.A_pos_postTrail = A_pos;
 		cd ..
 	end
 
@@ -38,9 +43,7 @@ function stats = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, 
 			end
 		end
 	end
-
-	% Store statistics
-	stats = struct('Escaped', 0, 'Dead', 0, 'SurvivalRate', 0);
+	stats.F_initial = F;
 
 	A_running = zeros(nagent, 1);
 
@@ -79,6 +82,7 @@ function stats = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, 
 			break
 		end
 	end
+	stats.Nsteps_Fire = i;
 
 	% Close video file
 	if ~isfield(flags, 'NoVideo') || ~flags.NoVideo || ~isfield(flags, 'NoVis') || ~flags.NoVis
