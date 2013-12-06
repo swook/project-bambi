@@ -38,20 +38,45 @@
 	cd ../analysis
 
 	% Set fire to middle-top pixels
-	F(1:2, 24:26) = 1;
+	F(1, w/2 - 1:w/2 + 1) = 1;
 
-	% Perform set of instructions
-	global Vis_Disabled;
-	Vis_Disabled = false;
-	NoVideo   = true;
-	cd ..
+	% Some variables for use in plotting later on
+	x      = [];
+	y      = [];
+	y_err  = [];
+	trials = [];
 
-	for i = 1:15
-		stats = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, i * 20, F, timer,...
-			struct('NoVideo', NoVideo, 'NoFireInit', 1),...
-			struct('A_pos', genA_pos, 'A_dest', genA_dest));
+	% Show bambi positions
+	cd ../visualisation
+	global Vis_WriteEnabled;
+	Vis_WriteEnabled = false;
+	visualise(Gmax, Gzero * ones(h, w), genA_pos);
+	cd ../analysis
+
+	% Start parallel pool as necessary
+	if matlabpool('size') == 0
+		matlabpool 'open'
 	end
 
+	cd ..
+	for i = 1:20
+		trials = [];
+		parfor t = 1:5
+			stats = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, i * 10, F, timer,...
+				struct('NoVis', true, 'NoVideo', true, 'NoFireInit', true),...
+				struct('A_pos', genA_pos, 'A_dest', genA_dest));
+			trials = [trials stats.SurvivalRate];
+		end
+		x     = [x     i * 10];
+		y     = [y     mean(trials)];
+		y_err = [y_err std(trials)];
+	end
+
+	plot(x, y);
+	errorbar(x, y, y_err);
+	xlabel 'Number of steps taken in Trail Formation';
+	ylabel 'Survival rate of agents';
+	print('-depsc', 'TrailNoTrail.eps');
+
 	cd analysis
-	Vis_Disabled = false;
 %end
