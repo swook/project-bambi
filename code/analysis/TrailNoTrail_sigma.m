@@ -22,7 +22,7 @@
 
 	h      = 50; % Grid height
 	w      = 50; % Grid width
-	nagent = 50; % Number of bambis
+	nagent = 100; % Number of bambis
 
 	dests = {[1, 1], [w, 1], [1, h], [w, h]};
 
@@ -60,12 +60,18 @@
 	end
 
 	cd ..
-	for i = 1:15
-		trials = [];
-		parfor t = 1:10
-			stats = assemblyline(Gzero, Gmax, I, T, i * 0.1, v, h, w, dests, nagent, N, F, timer,...
-				struct('NoVis', true, 'NoVideo', true, 'NoFireInit', true),...
-				struct('A_pos', genA_pos, 'A_dest', genA_dest));
+	for i = 1:20
+		% Get trail formation output once
+		stats = assemblyline(Gzero, Gmax, I, T, 0.1 * i, v, h, w, dests, nagent, N, F, timer,...
+			struct('OnlyTrail', true, 'NoVis', true, 'NoVideo', true, 'NoFireInit', true),...
+			struct('A_pos', genA_pos, 'A_dest', genA_dest));
+		G = stats.G_postTrail;
+
+		% Do fire + path finding only for trials
+		parfor t = 1:8
+			stats = assemblyline(Gzero, Gmax, I, T, 0.1 * i, v, h, w, dests, nagent, N, F, timer,...
+				struct('NoTrail', true, 'NoVis', true, 'NoVideo', true, 'NoFireInit', true),...
+				struct('A_pos', genA_pos, 'A_dest', genA_dest, 'G', G));
 			trials = [trials stats.SurvivalRate];
 		end
 		x     = [x     i];

@@ -17,6 +17,10 @@ function stats = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, 
 	% Store statistics
 	stats = struct('Escaped', 0, 'Dead', 0, 'SurvivalRate', 0);
 
+	% Initialise other variables
+	A_pos  = zeros(nagent, 2);
+	A_dest = zeros(nagent, 2);
+
 	% Perform trail formation
 	if ~isfield(flags, 'NoTrail') || ~flags.NoTrail
 		cd 'trail-formation'
@@ -29,6 +33,20 @@ function stats = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, 
 		stats.G_postTrail = G;
 		stats.A_pos_postTrail = A_pos;
 		cd ..
+	end
+
+	% Return here if only trail formation is requested
+	if isfield(flags, 'OnlyTrail') && flags.OnlyTrail
+		return;
+	end
+
+	% Reset Bambi positions to provided A_pos if needed
+	if isfield(extraparams, 'G')
+		G = extraparams.G;
+	end
+	if isfield(extraparams, 'A_pos') && isfield(extraparams, 'A_dest')
+		A_pos = extraparams.A_pos;
+		A_dest = extraparams.A_dest;
 	end
 
 	% Fire Initialization
