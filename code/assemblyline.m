@@ -83,7 +83,7 @@ function stats = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, 
 		cd ..
 
 		% Remove the dead Bambis. We don't need them.
-		[A_pos, A_dest, A_running, stats] = removeDeadBambis(F, A_pos, A_dest, A_running, h, w, stats);
+		[A_pos, A_dest, A_running, stats] = removeDeadBambis(F, A_pos, A_dest, A_running, h, w, flags, stats);
 
 		% Visualise this situation
 		if ~isfield(flags, 'NoVis') || ~flags.NoVis

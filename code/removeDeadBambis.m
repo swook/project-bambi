@@ -1,4 +1,4 @@
-function [newA_pos, newA_dest, newA_run, stats] = removeDeadBambis(F, A_pos, A_dest, A_running, h, w, stats)
+function [newA_pos, newA_dest, newA_run, stats] = removeDeadBambis(F, A_pos, A_dest, A_running, h, w, flags, stats)
 % REMOVEDEADBAMBIS Removes all dead or escaped agents from grid
 	newA_pos   = [];
 	newA_dest  = [];
@@ -19,6 +19,13 @@ function [newA_pos, newA_dest, newA_run, stats] = removeDeadBambis(F, A_pos, A_d
 		if F(A_pos(i, 2), A_pos(i, 1)) > 0
 			stats.Dead = stats.Dead + 1;
 			continue;
+		end
+		% If no borders and bambis on border
+		if isfield(flags, 'NoBorder') && flags.NoBorder
+			if A_pos(i, 1) == 1 || A_pos(i, 1) == w || A_pos(i, 2) == 1 || A_pos(i, 2) == h
+				stats.Escaped = stats.Escaped + 1;
+				continue;
+			end
 		end
 
 		Nonfire = 0; % Variable to count how many neighbours are on fire
