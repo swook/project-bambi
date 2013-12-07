@@ -100,7 +100,7 @@
 	pn = 'N';
 	xl = 'Number of steps taken in Trail Formation';
 
-	% Plot open border version
+	% Plot closed border version
 	plot(x, y);
 	errorbar(x, y, y_err);
 	xlabel xl;
@@ -110,7 +110,7 @@
 	print('-depsc', ['output/TrailNoTrail_' pn '.eps']);
 	print('-dpng', ['output/TrailNoTrail_' pn '.png']);
 
-	% Plot closed border version
+	% Plot open border version
 	plot(x, y);
 	errorbar(x, y, y_err);
 	xlabel xl;
