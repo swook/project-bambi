@@ -1,0 +1,2 @@
+Code in this directory are not functional.
+The files and images stored here are for future extensions.
