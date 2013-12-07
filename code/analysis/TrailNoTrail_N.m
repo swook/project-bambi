@@ -85,6 +85,6 @@
 	ylabel 'Survival rate of agents';
 	cd analysis
 
-	saveas(gcf, 'TrailNoTrail_N.fig', 'fig');
-	print('-depsc', 'TrailNoTrail_N.eps');
+	saveas(gcf, 'output/TrailNoTrail_N.fig', 'fig');
+	print('-depsc', 'output/TrailNoTrail_N.eps');
 %end
