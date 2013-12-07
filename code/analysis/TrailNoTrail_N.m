@@ -112,7 +112,7 @@
 
 	% Plot open border version
 	plot(x, y);
-	errorbar(x, y, y_err);
+	errorbar(x, y_nb, y_nberr);
 	xlabel xl;
 	ylabel 'Survival rate of agents';
 	ylim([0 100]);
