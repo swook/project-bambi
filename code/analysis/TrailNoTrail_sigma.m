@@ -106,9 +106,9 @@
 	xlabel xl;
 	ylabel 'Survival rate of agents';
 	ylim([0 100]);
-	saveas(gcf, ['output/TrailNoTrail_' pn '.fig', 'fig');
-	print('-depsc', ['output/TrailNoTrail_' pn '.eps');
-	print('-dpng', ['output/TrailNoTrail_' pn '.png');
+	saveas(gcf, ['output/TrailNoTrail_' pn '.fig'], 'fig');
+	print('-depsc', ['output/TrailNoTrail_' pn '.eps']);
+	print('-dpng', ['output/TrailNoTrail_' pn '.png']);
 
 	% Plot closed border version
 	plot(x, y);
@@ -116,8 +116,8 @@
 	xlabel xl;
 	ylabel 'Survival rate of agents';
 	ylim([0 100]);
-	saveas(gcf, ['output/TrailNoTrail_NoBord_' pn '.fig', 'fig');
-	print('-depsc', ['output/TrailNoTrail_NoBord_' pn '.eps');
-	print('-dpng', ['output/TrailNoTrail_NoBord_' pn '.png');
+	saveas(gcf, ['output/TrailNoTrail_NoBord_' pn '.fig'], 'fig');
+	print('-depsc', ['output/TrailNoTrail_NoBord_' pn '.eps']);
+	print('-dpng', ['output/TrailNoTrail_NoBord_' pn '.png']);
 
 %end
