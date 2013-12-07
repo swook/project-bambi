@@ -42,10 +42,12 @@
 	timer(1:2, w/2 - 1:w/2 + 1) = 5;
 
 	% Some variables for use in plotting later on
-	x      = [];
-	y      = [];
-	y_err  = [];
-	trials = [];
+	x       = [];
+	y       = [];
+	y_err   = [];
+	y_nb    = [];
+	y_nberr = [];
+	trials  = [];
 
 	% Show bambi positions
 	cd ../visualisation
@@ -62,7 +64,8 @@
 	cd ..
 	for i = 1:20
 		% Get trail formation output once
-		stats = assemblyline(Gzero, Gmax, I, T, 0.1 * i, v, h, w, dests, nagent, N, F, timer,...
+		trials = [];
+		stats = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, N, F, timer,...
 			struct('OnlyTrail', true, 'NoVis', true, 'NoVideo', true, 'NoFireInit', true),...
 			struct('A_pos', genA_pos, 'A_dest', genA_dest));
 		G = stats.G_postTrail;
@@ -74,18 +77,47 @@
 				struct('A_pos', genA_pos, 'A_dest', genA_dest, 'G', G));
 			trials = [trials stats.SurvivalRate];
 		end
+
 		x     = [x     i];
 		y     = [y     mean(trials)];
 		y_err = [y_err std(trials)];
-	end
 
-	plot(x, y);
-	errorbar(x, y, y_err);
-	xlabel 'Visibility of trails';
-	ylabel 'Survival rate of agents';
-	ylim([0 100]);
+		% Do fire + path finding for trials without borders
+		trials = [];
+		parfor t = 1:8
+			stats = assemblyline(Gzero, Gmax, I, T, 0.1 * i, v, h, w, dests, nagent, M, F, timer,...
+				struct('NoTrail', true, 'NoVis', true, 'NoVideo', true, 'NoFireInit', true, 'NoBorder', true),...
+				struct('A_pos', genA_pos, 'A_dest', genA_dest, 'G', G));
+			trials = [trials stats.SurvivalRate];
+		end
+
+		y_nb = [y_nb mean(trials)];
+		y_nberr = [y_nberr std(trials)];
+	end
 	cd analysis
 
-	saveas(gcf, 'output/TrailNoTrail_sigma.fig', 'fig');
-	print('-depsc', 'output/TrailNoTrail_sigma.eps');
+	% Parameter name for file naming
+	pn = 'sigma';
+	xl = 'Visibility of trails';
+
+	% Plot open border version
+	plot(x, y);
+	errorbar(x, y, y_err);
+	xlabel xl;
+	ylabel 'Survival rate of agents';
+	ylim([0 100]);
+	saveas(gcf, ['output/TrailNoTrail_' pn '.fig', 'fig');
+	print('-depsc', ['output/TrailNoTrail_' pn '.eps');
+	print('-dpng', ['output/TrailNoTrail_' pn '.png');
+
+	% Plot closed border version
+	plot(x, y);
+	errorbar(x, y, y_err);
+	xlabel xl;
+	ylabel 'Survival rate of agents';
+	ylim([0 100]);
+	saveas(gcf, ['output/TrailNoTrail_NoBord_' pn '.fig', 'fig');
+	print('-depsc', ['output/TrailNoTrail_NoBord_' pn '.eps');
+	print('-dpng', ['output/TrailNoTrail_NoBord_' pn '.png');
+
 %end
