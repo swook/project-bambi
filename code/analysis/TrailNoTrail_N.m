@@ -83,6 +83,7 @@
 	errorbar(x, y, y_err);
 	xlabel 'Number of steps taken in Trail Formation';
 	ylabel 'Survival rate of agents';
+	ylim([0 100]);
 	cd analysis
 
 	saveas(gcf, 'output/TrailNoTrail_N.fig', 'fig');
