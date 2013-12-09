@@ -123,7 +123,7 @@
 	% Plot closed border version
 	plot(x, y);
 	errorbar(x, y, y_err);
-	xlabel xl;
+	xlabel(xl);
 	ylabel 'Survival rate of agents';
 	ylim([0 100]);
 	saveas(gcf, ['output/TrailNoTrail_' pn '.fig'], 'fig');
@@ -133,7 +133,7 @@
 	% Plot open border version
 	plot(x, y);
 	errorbar(x, y_nb, y_nberr);
-	xlabel xl;
+	xlabel(xl);
 	ylabel 'Survival rate of agents';
 	ylim([0 100]);
 	saveas(gcf, ['output/TrailNoTrail_NoBord_' pn '.fig'], 'fig');
