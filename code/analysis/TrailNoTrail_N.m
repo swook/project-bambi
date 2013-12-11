@@ -61,7 +61,7 @@
 	F(1:2, w/2 - 1:w/2 + 1) = 1;
 	timer(1:2, w/2 - 1:w/2 + 1) = 5;
 
-	% Some variables for use in plotting later oR
+	% Some variables for use in plotting later on
 	x       = [];
 	y       = [];
 	y_err   = [];
@@ -82,6 +82,7 @@
 	end
 
 	cd ..
+	NTrials = 192;
 	for i = 1:20
 		% Get trail formation output once
 		trials = [];
@@ -91,7 +92,7 @@
 		G = stats.G_postTrail;
 
 		% Do fire + path finding only for trials
-		parfor t = 1:8
+		parfor t = 1:NTrials
 			stats = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, i * 10, F, timer,...
 				struct('NoTrail', true, 'NoVis', true, 'NoVideo', true, 'NoFireInit', true),...
 				struct('A_pos', genA_pos, 'A_dest', genA_dest, 'G', G));
@@ -104,7 +105,7 @@
 
 		% Do fire + path finding for trials without borders
 		trials = [];
-		parfor t = 1:8
+		parfor t = 1:NTrials
 			stats = assemblyline(Gzero, Gmax, I, T, sigma, v, h, w, dests, nagent, i * 10, F, timer,...
 				struct('NoTrail', true, 'NoVis', true, 'NoVideo', true, 'NoFireInit', true, 'NoBorder', true),...
 				struct('A_pos', genA_pos, 'A_dest', genA_dest, 'G', G));
@@ -114,6 +115,8 @@
 		y_nb = [y_nb mean(trials)];
 		y_nberr = [y_nberr std(trials)];
 	end
+	y_err = y_err ./ sqrt(NTrials);
+	y_nberr = y_nberr ./ sqrt(NTrials);
 	cd analysis
 
 	% Parameter name for file naming
