@@ -1,12 +1,12 @@
-%!PS-Adobe-2.0 EPSF-1.2
-%%Creator: MATLAB, The MathWorks, Inc. Version 8.2.0.701 (R2013b). Operating System: Linux 2.6.32-358.6.2.el6.x86_64 #1 SMP Thu May 16 20:59:36 UTC 2013 x86_64.
-%%Title: output/TrailNoTrail_NoBord_sigma2.eps
-%%CreationDate: 12/12/2013  13:52:40
+%!PS-Adobe-3.0 EPSF-3.0
+%%Creator: MATLAB, The MathWorks, Inc. Version 8.1.0.604 (R2013a). Operating System: Linux 3.10-2-amd64 #1 SMP Debian 3.10.7-1 (2013-08-17) x86_64.
+%%Title: /home/wookie/Documents/MSSSM/bambi/code/analysis/output/TrailNoTrail_NoBord_sigma.eps
+%%CreationDate: 12/13/2013  22:27:47
 %%DocumentNeededFonts: Helvetica
 %%DocumentProcessColors: Cyan Magenta Yellow Black
-%%Extensions: CMYK
+%%LanguageLevel: 2
 %%Pages: 1
-%%BoundingBox:    55   199   548   589
+%%BoundingBox:    89   236   505   605
 %%EndComments
 
 %%BeginProlog
@@ -137,7 +137,10 @@
 /ds {stri astore pop} bdef
 /dt {dtri astore pop} bdef
 /db {2 copy /cols xdef /rows xdef mul dup 3 mul string
-  currentfile exch readhexstring pop
+  currentfile 
+  3 index 0 eq {/ASCIIHexDecode filter}
+  {/ASCII85Decode filter 3 index 2 eq {/RunLengthDecode filter} if }
+  ifelse exch readstring pop
   dup 0 3 index getinterval /rbmap xdef
   dup 2 index dup getinterval /gbmap xdef
   1 index dup 2 mul exch getinterval /bbmap xdef pop pop}bdef
@@ -158,7 +161,7 @@ end
 
 %%Page: 1 1
 %%BeginPageSetup
-%%PageBoundingBox:    55   199   548   589
+%%PageBoundingBox:    89   236   505   605
 MathWorks begin
 bpage
 %%EndPageSetup
@@ -167,10 +170,10 @@ bpage
 bplot
 
 /dpi2point 12 def
-portraitMode 0216 7344 csm
+portraitMode 1068 7260 csm
 
-  446   274  5925  4681 MR c np
-76 dict begin %Colortable dictionary
+    0     0  4992  4418 rc
+85 dict begin %Colortable dictionary
 /c0 { 0.000000 0.000000 0.000000 sr} bdef
 /c1 { 1.000000 1.000000 1.000000 sr} bdef
 /c2 { 0.900000 0.000000 0.000000 sr} bdef
@@ -182,166 +185,173 @@ portraitMode 0216 7344 csm
 c0
 1 j
 1 sg
-   0    0 6913 5186 PR
+   0    0 4993 4419 rf
 6 w
-0 4226 5356 0 0 -4226 899 4615 4 MP
+0 3601 3869 0 0 -3601 649 3932 4 MP
 PP
--5356 0 0 4226 5356 0 0 -4226 899 4615 5 MP stroke
+-3869 0 0 3601 3869 0 0 -3601 649 3932 5 MP stroke
 4 w
 DO
 SO
 6 w
 0 sg
- 899 4615 mt 6255 4615 L
- 899  389 mt 6255  389 L
- 899 4615 mt  899  389 L
-6255 4615 mt 6255  389 L
- 899 4615 mt 6255 4615 L
- 899 4615 mt  899  389 L
- 899 4615 mt  899 4561 L
- 899  389 mt  899  442 L
+ 649 3932 mt 4518 3932 L
+ 649  331 mt 4518  331 L
+ 649 3932 mt  649  331 L
+4518 3932 mt 4518  331 L
+ 649 3932 mt 4518 3932 L
+ 649 3932 mt  649  331 L
+ 649 3932 mt  649 3893 L
+ 649  331 mt  649  369 L
 %%IncludeResource: font Helvetica
 /Helvetica /ISOLatin1Encoding 120 FMSR
 
- 866 4760 mt 
+ 616 4077 mt 
 (0) s
-1970 4615 mt 1970 4561 L
-1970  389 mt 1970  442 L
-1937 4760 mt 
+1422 3932 mt 1422 3893 L
+1422  331 mt 1422  369 L
+1389 4077 mt 
 (5) s
-3041 4615 mt 3041 4561 L
-3041  389 mt 3041  442 L
-2975 4760 mt 
+2196 3932 mt 2196 3893 L
+2196  331 mt 2196  369 L
+2130 4077 mt 
 (10) s
-4112 4615 mt 4112 4561 L
-4112  389 mt 4112  442 L
-4046 4760 mt 
+2970 3932 mt 2970 3893 L
+2970  331 mt 2970  369 L
+2904 4077 mt 
 (15) s
-5183 4615 mt 5183 4561 L
-5183  389 mt 5183  442 L
-5117 4760 mt 
+3744 3932 mt 3744 3893 L
+3744  331 mt 3744  369 L
+3678 4077 mt 
 (20) s
-6255 4615 mt 6255 4561 L
-6255  389 mt 6255  442 L
-6189 4760 mt 
+4518 3932 mt 4518 3893 L
+4518  331 mt 4518  369 L
+4452 4077 mt 
 (25) s
- 899 4615 mt  952 4615 L
-6255 4615 mt 6201 4615 L
- 798 4659 mt 
+ 649 3932 mt  687 3932 L
+4518 3932 mt 4479 3932 L
+ 548 3976 mt 
 (0) s
- 899 4192 mt  952 4192 L
-6255 4192 mt 6201 4192 L
- 731 4236 mt 
+ 649 3571 mt  687 3571 L
+4518 3571 mt 4479 3571 L
+ 481 3615 mt 
 (10) s
- 899 3769 mt  952 3769 L
-6255 3769 mt 6201 3769 L
- 731 3813 mt 
+ 649 3211 mt  687 3211 L
+4518 3211 mt 4479 3211 L
+ 481 3255 mt 
 (20) s
- 899 3347 mt  952 3347 L
-6255 3347 mt 6201 3347 L
- 731 3391 mt 
+ 649 2851 mt  687 2851 L
+4518 2851 mt 4479 2851 L
+ 481 2895 mt 
 (30) s
- 899 2924 mt  952 2924 L
-6255 2924 mt 6201 2924 L
- 731 2968 mt 
+ 649 2491 mt  687 2491 L
+4518 2491 mt 4479 2491 L
+ 481 2535 mt 
 (40) s
- 899 2502 mt  952 2502 L
-6255 2502 mt 6201 2502 L
- 731 2546 mt 
+ 649 2131 mt  687 2131 L
+4518 2131 mt 4479 2131 L
+ 481 2175 mt 
 (50) s
- 899 2079 mt  952 2079 L
-6255 2079 mt 6201 2079 L
- 731 2123 mt 
+ 649 1771 mt  687 1771 L
+4518 1771 mt 4479 1771 L
+ 481 1815 mt 
 (60) s
- 899 1656 mt  952 1656 L
-6255 1656 mt 6201 1656 L
- 731 1700 mt 
+ 649 1411 mt  687 1411 L
+4518 1411 mt 4479 1411 L
+ 481 1455 mt 
 (70) s
- 899 1234 mt  952 1234 L
-6255 1234 mt 6201 1234 L
- 731 1278 mt 
+ 649 1051 mt  687 1051 L
+4518 1051 mt 4479 1051 L
+ 481 1095 mt 
 (80) s
- 899  811 mt  952  811 L
-6255  811 mt 6201  811 L
- 731  855 mt 
+ 649  691 mt  687  691 L
+4518  691 mt 4479  691 L
+ 481  735 mt 
 (90) s
- 899  389 mt  952  389 L
-6255  389 mt 6201  389 L
- 664  433 mt 
+ 649  331 mt  687  331 L
+4518  331 mt 4479  331 L
+ 414  375 mt 
 (100) s
- 899 4615 mt 6255 4615 L
- 899  389 mt 6255  389 L
- 899 4615 mt  899  389 L
-6255 4615 mt 6255  389 L
+ 649 3932 mt 4518 3932 L
+ 649  331 mt 4518  331 L
+ 649 3932 mt  649  331 L
+4518 3932 mt 4518  331 L
+gs 649 331 3870 3602 rc
 /c8 { 0.000000 0.000000 1.000000 sr} bdef
 c8
-0 114 1113 3566 2 MP stroke
-81 0 1072 3566 2 MP stroke
-81 0 1072 3680 2 MP stroke
-0 46 1327 3675 2 MP stroke
-82 0 1286 3675 2 MP stroke
-82 0 1286 3721 2 MP stroke
-0 36 1541 3691 2 MP stroke
-81 0 1501 3691 2 MP stroke
-81 0 1501 3727 2 MP stroke
-0 43 1755 3626 2 MP stroke
-81 0 1715 3626 2 MP stroke
-81 0 1715 3669 2 MP stroke
-0 73 1970 3646 2 MP stroke
-81 0 1929 3646 2 MP stroke
-81 0 1929 3719 2 MP stroke
-0 42 2184 3351 2 MP stroke
-82 0 2143 3351 2 MP stroke
-82 0 2143 3393 2 MP stroke
-0 76 2398 2184 2 MP stroke
-82 0 2357 2184 2 MP stroke
-82 0 2357 2260 2 MP stroke
-0 41 2612 1514 2 MP stroke
-81 0 2572 1514 2 MP stroke
-81 0 2572 1555 2 MP stroke
-0 43 2827 1143 2 MP stroke
-81 0 2786 1143 2 MP stroke
-81 0 2786 1186 2 MP stroke
-0 39 3041 998 2 MP stroke
-82 0 3000 998 2 MP stroke
-82 0 3000 1037 2 MP stroke
-0 36 3255 889 2 MP stroke
-82 0 3214 889 2 MP stroke
-82 0 3214 925 2 MP stroke
-0 39 3469 810 2 MP stroke
-81 0 3429 810 2 MP stroke
-81 0 3429 849 2 MP stroke
-0 36 3684 738 2 MP stroke
-81 0 3643 738 2 MP stroke
-81 0 3643 774 2 MP stroke
-0 31 3898 767 2 MP stroke
-82 0 3857 767 2 MP stroke
-82 0 3857 798 2 MP stroke
-0 36 4112 707 2 MP stroke
-82 0 4071 707 2 MP stroke
-82 0 4071 743 2 MP stroke
-0 29 4326 695 2 MP stroke
-81 0 4286 695 2 MP stroke
-81 0 4286 724 2 MP stroke
-0 32 4541 690 2 MP stroke
-81 0 4500 690 2 MP stroke
-81 0 4500 722 2 MP stroke
-0 35 4755 679 2 MP stroke
-82 0 4714 679 2 MP stroke
-82 0 4714 714 2 MP stroke
-0 28 4969 664 2 MP stroke
-82 0 4928 664 2 MP stroke
-82 0 4928 692 2 MP stroke
-0 31 5183 655 2 MP stroke
-81 0 5143 655 2 MP stroke
-81 0 5143 686 2 MP stroke
-214 -7 214 -19 214 -9 215 -4 214 -15 214 -57 214 26 215 -74 
-214 -77 214 -111 214 -147 215 -369 214 -688 214 -1150 214 -310 215 35 
-214 -62 214 11 214 75 1113 3623 20 MP stroke
+0 97 803 3038 2 MP stroke
+59 0 774 3038 2 MP stroke
+59 0 774 3135 2 MP stroke
+0 39 958 3131 2 MP stroke
+58 0 929 3131 2 MP stroke
+58 0 929 3170 2 MP stroke
+0 31 1113 3144 2 MP stroke
+59 0 1083 3144 2 MP stroke
+59 0 1083 3175 2 MP stroke
+0 37 1268 3089 2 MP stroke
+59 0 1238 3089 2 MP stroke
+59 0 1238 3126 2 MP stroke
+0 62 1422 3106 2 MP stroke
+59 0 1393 3106 2 MP stroke
+59 0 1393 3168 2 MP stroke
+0 36 1577 2855 2 MP stroke
+58 0 1548 2855 2 MP stroke
+58 0 1548 2891 2 MP stroke
+0 65 1732 1860 2 MP stroke
+59 0 1702 1860 2 MP stroke
+59 0 1702 1925 2 MP stroke
+0 34 1887 1290 2 MP stroke
+59 0 1857 1290 2 MP stroke
+59 0 1857 1324 2 MP stroke
+0 36 2041 974 2 MP stroke
+59 0 2012 974 2 MP stroke
+59 0 2012 1010 2 MP stroke
+0 33 2196 850 2 MP stroke
+59 0 2167 850 2 MP stroke
+59 0 2167 883 2 MP stroke
+0 30 2351 757 2 MP stroke
+59 0 2321 757 2 MP stroke
+59 0 2321 787 2 MP stroke
+0 33 2506 690 2 MP stroke
+59 0 2476 690 2 MP stroke
+59 0 2476 723 2 MP stroke
+0 31 2660 628 2 MP stroke
+59 0 2631 628 2 MP stroke
+59 0 2631 659 2 MP stroke
+0 27 2815 653 2 MP stroke
+59 0 2786 653 2 MP stroke
+59 0 2786 680 2 MP stroke
+0 31 2970 602 2 MP stroke
+59 0 2940 602 2 MP stroke
+59 0 2940 633 2 MP stroke
+0 25 3125 592 2 MP stroke
+59 0 3095 592 2 MP stroke
+59 0 3095 617 2 MP stroke
+0 27 3279 588 2 MP stroke
+59 0 3250 588 2 MP stroke
+59 0 3250 615 2 MP stroke
+0 30 3434 578 2 MP stroke
+59 0 3405 578 2 MP stroke
+59 0 3405 608 2 MP stroke
+0 24 3589 565 2 MP stroke
+58 0 3560 565 2 MP stroke
+58 0 3560 589 2 MP stroke
+0 27 3744 557 2 MP stroke
+59 0 3714 557 2 MP stroke
+59 0 3714 584 2 MP stroke
+155 -6 155 -16 155 -8 154 -3 155 -13 155 -49 155 22 154 -62 
+155 -66 155 -95 155 -125 154 -315 155 -586 155 -980 155 -264 154 30 
+155 -53 155 9 155 65 803 3086 20 MP stroke
+gr
+
+c8
 0 sg
-3150 4903 mt 
+%%IncludeResource: font Helvetica
+/Helvetica /ISOLatin1Encoding 144 FMSR
+
+2071 4238 mt 
 (Visibility of trails) s
- 582 3100 mt  -90 rotate
+ 327 2848 mt  -90 rotate
 (Survival rate of agents) s
 90 rotate
 
